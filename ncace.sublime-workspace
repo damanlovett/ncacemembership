@@ -1,0 +1,516 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"bac",
+				"background-color"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/Controller/MembershipsController.php",
+			"settings":
+			{
+				"buffer_size": 3674,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Template/Memberships/index.ctp",
+			"settings":
+			{
+				"buffer_size": 4300,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Template/Memberships/view.ctp",
+			"settings":
+			{
+				"buffer_size": 2770,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "plugins/Usermgmt/src/Template/Users/view_user.ctp",
+			"settings":
+			{
+				"buffer_size": 6752,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 333.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Snippet: ",
+				"Snippet: formattable"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 571.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/ncace",
+		"/C/xampp/htdocs/ncace/plugins",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmails",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users",
+		"/C/xampp/htdocs/ncace/src",
+		"/C/xampp/htdocs/ncace/src/Template",
+		"/C/xampp/htdocs/ncace/src/Template/Memberships",
+		"/C/xampp/htdocs/ncace/src/Template/Registrations",
+		"/C/xampp/htdocs/ncace/src/Template/Transactions"
+	],
+	"file_history":
+	[
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Controller/UsersController.php",
+		"/C/xampp/htdocs/ncace/config/app.php",
+		"/C/xampp/htdocs/ncace/src/Template/Transactions/index.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Element/tempmenu.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Element/all_users.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Transactions/transactions.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/login.ctp",
+		"/C/xampp/htdocs/ncace/config/remoteDatabaseSettings.txt",
+		"/C/xampp/htdocs/ncace/src/Controller/RegistrationsController.php",
+		"/C/xampp/htdocs/ncace/src/Controller/TransactionsController.php",
+		"/C/xampp/htdocs/ncace/src/Template/Element/registrationsearch.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/dashboard.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Registrations/index.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Conferences/index.ctp",
+		"/C/Users/damanlovett/AppData/Roaming/Sublime Text 3/Packages/User/pagestarter.sublime-snippet",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Element/search_form.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Element/paginator.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Model/Table/UsersTable.php",
+		"/C/xampp/htdocs/ncace/src/Controller/ConferencesController.php",
+		"/C/xampp/htdocs/ncace/src/Template/Memberships/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/view_user.ctp",
+		"/C/xampp/htdocs/ncace/webroot/css/lccustom.css",
+		"/C/xampp/htdocs/ncace/src/Template/Fees/index.ctp",
+		"/C/xampp/htdocs/ncace/config/bootstrap.php",
+		"/C/xampp/htdocs/ncace/webroot/css/login.css",
+		"/C/xampp/htdocs/ncace/webroot/css/home.css",
+		"/C/xampp/htdocs/ncace/src/Template/Layout/default.ctp",
+		"/C/Users/damanlovett/AppData/Roaming/Sublime Text 3/Packages/User/formattable.sublime-snippet",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/edit_profile.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Conferences/view.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Controller/UserEmailsController.php",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Controller/UsermgmtAppController.php",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Model/Entity/User.php",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmails/send.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmailTemplates/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/ScheduledEmails/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/ScheduledEmails/view.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/ScheduledEmails/edit.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Controller/CronJobsController.php",
+		"/C/xampp/htdocs/ncace/src/Model/Entity/Transaction.php",
+		"/C/xampp/htdocs/ncace/src/Model/Table/TransactionsTable.php",
+		"/C/xampp/htdocs/ncace/src/Model/Table/AwardsTable.php",
+		"/C/xampp/htdocs/ncace/src/Model/Table/NominationsTable.php",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/membership.ctp",
+		"/C/xampp/htdocs/ncace/webroot/js/custom.js",
+		"/C/xampp/htdocs/ncace/src/Controller/AwardsController.php",
+		"/C/Users/damanlovett/Downloads/jquery-ui-1.12.1.custom/index.html",
+		"/C/xampp/htdocs/ncace/webroot/js/jquery.min.js",
+		"/C/xampp/htdocs/ncace/webroot/js/bootstrap.js",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/members.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Element/members.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Element/dashboard.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/myprofile.ctp",
+		"/C/xampp/htdocs/ncace/plugins/CsvView/src/View/CsvView.php",
+		"/C/xampp/htdocs/ncace/src/Template/Layout/login.ctp",
+		"/C/xampp/htdocs/ncace/config/routes.php",
+		"/C/xampp/htdocs/ncace/src/Template/Home/index.ctp",
+		"/C/xampp/htdocs/ncace/src/Controller/HomeController.php",
+		"/C/Users/damanlovett/Downloads/cakephp-csvview-master/config/bootstrap.php",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/config/routes.php",
+		"/C/Users/damanlovett/Documents/myFiles/add.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/MyFiles/edit.ctp",
+		"/C/Users/damanlovett/Documents/myFiles/MyFilesController.php",
+		"/C/xampp/htdocs/ncace/src/Controller/MyFilesController.php",
+		"/C/xampp/htdocs/ncace/src/Template/MyFiles/add.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Awards/add.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Awards/edit.ctp",
+		"/C/Users/damanlovett/AppData/Roaming/Sublime Text 3/Packages/User/textarea.sublime-snippet",
+		"/C/Users/damanlovett/AppData/Roaming/Sublime Text 3/Packages/User/actionbutton.sublime-snippet",
+		"/C/xampp/htdocs/ncace/src/Template/Awards/view.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Awards/index.ctp",
+		"/C/xampp/htdocs/ncace/webroot/css/custom.css",
+		"/C/xampp/htdocs/ncace/src/Template/Announcements/index.ctp",
+		"/C/xampp/htdocs/ncace/src/View/Helper/SwitchesHelper.php",
+		"/C/xampp/htdocs/ncace/src/Template/CodeSnippets.php",
+		"/C/xampp/htdocs/ncace/src/Template/Announcements/add.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Announcements/edit.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Announcements/view.ctp",
+		"/C/xampp/htdocs/ncace/src/Template/Dropdowns/add.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/view_user_permissions.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserGroups/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserGroups/edit.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserGroups/add.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserGroupPermissions/print_permission_changes.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmailTemplates/add.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmailTemplates/edit.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmailSignatures/add.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmailSignatures/edit.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmailSignatures/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmails/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmails/send_to_user.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmails/send_to_user_confirm.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserEmails/view.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserContacts/contact_us.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserContacts/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserContacts/send_reply.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/StaticPages/add.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/StaticPages/edit.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/StaticPages/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/StaticPages/preview.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/StaticPages/view.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/SettingOptions/add.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/SettingOptions/edit.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/SettingOptions/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserSettings/add_setting.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserSettings/cakelog.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserSettings/edit_setting.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserSettings/index.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserGroupPermissions/permission_group_matrix.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserGroupPermissions/permission_sub_group_matrix.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/UserContacts/send_reply_confirm.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/online.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/popup.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/register.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/upload_csv.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/edit_user.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/email_verification.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/forgot_password.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/access_denied.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/activate_password.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/add_multiple_users.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/add_user.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/change_password.ctp",
+		"/C/xampp/htdocs/ncace/plugins/Usermgmt/src/Template/Users/change_user_password.ctp",
+		"/C/xampp/htdocs/ncace/src/Controller/AppController.php",
+		"/C/xampp/htdocs/ncace/src/Template/Layout/default.copy2.ctp",
+		"/C/xampp/htdocs/ncace/src/Controller/AnnouncementsController.php"
+	],
+	"find":
+	{
+		"height": 61.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"<td",
+			"td",
+			"Registration",
+			"Registrations",
+			"-",
+			"Users",
+			"'a",
+			"user[",
+			"user",
+			"contain",
+			"mem",
+			"redirect",
+			"15",
+			"login",
+			"send",
+			"sendVarication",
+			"echo",
+			"?>",
+			"?></li>",
+			"<?=",
+			"</li>",
+			"<li>",
+			"</li>",
+			"<li>",
+			"col-sm-2 c",
+			"col-sm-2",
+			"echo",
+			"10",
+			"10px",
+			"organization",
+			"Department/Division",
+			"ostatus",
+			"mstatus",
+			"Mstatus",
+			"mstatus",
+			"otypes",
+			"ostatus",
+			"gender"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/Controller/MembershipsController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3674,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								575,
+								575
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1364.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/Template/Memberships/index.ctp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4300,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2570,
+								2570
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CakePHP (tmbundle)/Syntaxes/(HTML) CakePHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 528.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/Template/Memberships/view.ctp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2770,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								896,
+								898
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CakePHP (tmbundle)/Syntaxes/(HTML) CakePHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 132.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "plugins/Usermgmt/src/Template/Users/view_user.ctp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6752,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2589,
+								2615
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CakePHP (tmbundle)/Syntaxes/(HTML) CakePHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 704.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 60.0
+	},
+	"input":
+	{
+		"height": 50.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 107.0
+	},
+	"pinned_build_system": "",
+	"project": "ncace.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 297.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

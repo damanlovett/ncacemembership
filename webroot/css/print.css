@@ -1,0 +1,32 @@
+/**
+* Print stylesheet for ncace.org
+* @version         1.0
+* @lastmodified    12/5/2017
+*/
+ 
+
+   body {
+       
+       background: none;
+   }
+   
+    nav {
+        
+        display:none;
+    }
+    
+    div.dashboard-menu{
+        
+        display:none;
+    }
+    
+    div.panel2 {
+        
+        margin-top:50px;
+    }
+    
+    div.panel-success>.panel-heading {
+        
+        background-color: #FFFFFF;
+        font-weight: bold;
+    }
