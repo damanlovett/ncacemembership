@@ -24,23 +24,23 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 <div class="panel panel-success">
 	<div class="panel-heading">
 		<span class="panel-title">
-			<?php echo __('NCACE Membership');?>
+			<?php echo __('NCACE Membership'); ?>
 		</span>
 		<div class="panel-title-right">
-			<?= $this->Html->link('Export Membership', ['controller' => 'users',	'action' => 'members_status', '1'], ['escape'=>false, 'class'=>'btn btn-primary']) ?>
-			<?= $this->Html->link(__('Renew Membership'), ['action' => 'my'], ['class'=>'btn btn-primary btn-sm']) ?>
-			<?= $this->Html->link(__('Return Home'), ['plugin'=>'Usermgmt','controller'=>'users','action' => 'dashboard'], ['class'=>'btn btn-primary btn-sm']) ?>
+			<?= $this->Html->link('Export Membership', ['controller' => 'users', 'action' => 'members_status', '1'], ['escape' => false, 'class' => 'btn btn-primary']) ?>
+			<?= $this->Html->link(__('Renew Membership'), ['plugin' => false, 'controller' => 'memberships', 'action' => 'my'], ['class' => 'btn btn-primary btn-sm']) ?>
+			<?= $this->Html->link(__('Return Home'), ['plugin' => 'Usermgmt', 'controller' => 'users', 'action' => 'dashboard'], ['class' => 'btn btn-primary btn-sm']) ?>
 		</div>
 	</div>
 	<div class="panel-body">
 		<div class="alert alert-info" style="text-align: left;">
 			<span>
 				<strong>Membership questions should be directed to </strong>
-				<?= $questions['signature'];?>
+				<?= $questions['signature']; ?>
 			</span>
 		</div>
 	</div>
 	<div class="panel-body">
-		<?php echo $this->element('Usermgmt.members');?>
+		<?php echo $this->element('Usermgmt.members'); ?>
 	</div>
 </div>
