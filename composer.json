@@ -11,7 +11,7 @@
         "cakephp/migrations": "^1.6",
         "cakephp/plugin-installer": "*",
         "friendsofcake/cakephp-csvview": "2.0",
-        "josegonzalez/cakephp-upload": "^3.7"
+        "josegonzalez/cakephp-upload": "^4.0"
     },
     "require-dev": {
         "psy/psysh": "@stable",
