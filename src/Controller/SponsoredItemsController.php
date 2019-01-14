@@ -18,6 +18,9 @@ class SponsoredItemsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Sponsorships', 'SponsoredLevels', 'Users']
+        ];
         $sponsoredItems = $this->paginate($this->SponsoredItems);
 
         $this->set(compact('sponsoredItems'));
@@ -34,7 +37,7 @@ class SponsoredItemsController extends AppController
     public function view($id = null)
     {
         $sponsoredItem = $this->SponsoredItems->get($id, [
-            'contain' => []
+            'contain' => ['Sponsorships', 'SponsoredLevels', 'Users', 'Sponsors']
         ]);
 
         $this->set('sponsoredItem', $sponsoredItem);
@@ -58,7 +61,10 @@ class SponsoredItemsController extends AppController
             }
             $this->Flash->error(__('The sponsored item could not be saved. Please, try again.'));
         }
-        $this->set(compact('sponsoredItem'));
+        $sponsorships = $this->SponsoredItems->Sponsorships->find('list', ['limit' => 200]);
+        $sponsoredLevels = $this->SponsoredItems->SponsoredLevels->find('list', ['limit' => 200]);
+        $users = $this->SponsoredItems->Users->find('list', ['limit' => 200]);
+        $this->set(compact('sponsoredItem', 'sponsorships', 'sponsoredLevels', 'users'));
         $this->set('_serialize', ['sponsoredItem']);
     }
 
@@ -83,7 +89,10 @@ class SponsoredItemsController extends AppController
             }
             $this->Flash->error(__('The sponsored item could not be saved. Please, try again.'));
         }
-        $this->set(compact('sponsoredItem'));
+        $sponsorships = $this->SponsoredItems->Sponsorships->find('list', ['limit' => 200]);
+        $sponsoredLevels = $this->SponsoredItems->SponsoredLevels->find('list', ['limit' => 200]);
+        $users = $this->SponsoredItems->Users->find('list', ['limit' => 200]);
+        $this->set(compact('sponsoredItem', 'sponsorships', 'sponsoredLevels', 'users'));
         $this->set('_serialize', ['sponsoredItem']);
     }
 

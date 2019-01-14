@@ -18,6 +18,9 @@ class SponsorshipsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Conferences', 'Users']
+        ];
         $sponsorships = $this->paginate($this->Sponsorships);
 
         $this->set(compact('sponsorships'));
@@ -34,7 +37,7 @@ class SponsorshipsController extends AppController
     public function view($id = null)
     {
         $sponsorship = $this->Sponsorships->get($id, [
-            'contain' => []
+            'contain' => ['Conferences', 'Users', 'SponsoredItems', 'Sponsors']
         ]);
 
         $this->set('sponsorship', $sponsorship);
@@ -58,7 +61,9 @@ class SponsorshipsController extends AppController
             }
             $this->Flash->error(__('The sponsorship could not be saved. Please, try again.'));
         }
-        $this->set(compact('sponsorship'));
+        $conferences = $this->Sponsorships->Conferences->find('list', ['limit' => 200]);
+        $users = $this->Sponsorships->Users->find('list', ['limit' => 200]);
+        $this->set(compact('sponsorship', 'conferences', 'users'));
         $this->set('_serialize', ['sponsorship']);
     }
 
@@ -83,7 +88,9 @@ class SponsorshipsController extends AppController
             }
             $this->Flash->error(__('The sponsorship could not be saved. Please, try again.'));
         }
-        $this->set(compact('sponsorship'));
+        $conferences = $this->Sponsorships->Conferences->find('list', ['limit' => 200]);
+        $users = $this->Sponsorships->Users->find('list', ['limit' => 200]);
+        $this->set(compact('sponsorship', 'conferences', 'users'));
         $this->set('_serialize', ['sponsorship']);
     }
 

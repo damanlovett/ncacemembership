@@ -49,6 +49,7 @@ $inactiveClass = '';
 																					echo "<ul class='dropdown-menu'>";
 																					if ($this->UserAuth->HP('Users', 'addUser', 'Usermgmt')) {
 																						echo "<li class='" . (($actionUrl == 'Users/addUser') ? $activeClass : $inactiveClass) . "'>" . $this->Html->link(__('Add User'), ['controller' => 'Users', 'action' => 'addUser', 'plugin' => 'Usermgmt']) . "</li>";
+																						echo "<li>" . $this->Html->link(__('Sponsorships'), ['controller' => 'Sponsorships', 'action' => 'index', 'plugin' => false]) . "</li>";
 																					}
 																					if ($this->UserAuth->HP('Users', 'addMultipleUsers', 'Usermgmt')) {
 																						echo "<li class='" . (($actionUrl == 'Users/addMultipleUsers') ? $activeClass : $inactiveClass) . "'>" . $this->Html->link(__('Add Multiple Users'), ['controller' => 'Users', 'action' => 'addMultipleUsers', 'plugin' => 'Usermgmt']) . "</li>";
