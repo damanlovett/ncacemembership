@@ -2,3 +2,15 @@
 /config/app.php
 /tmp/*
 /logs/*
+webroot/library/umphotos/15196591351468950269.JPG
+webroot/library/umphotos/15125888981707115602.jpg
+webroot/library/umphotos/15155118351183500110.jpg
+webroot/library/umphotos/15155181191169188908.jpg
+webroot/library/umphotos/15155985371450560674.jpg
+webroot/library/umphotos/15232998612080066287.jpg
+webroot/library/umphotos/1543507241278493125.jpg
+.gitignore
+tests/TestCase/Controller/SponsoredItemsControllerTest.php
+tests/TestCase/Controller/SponsorshipsControllerTest.php
+composer.lock
+webroot/library/umphotos/imagecache/75x75_
