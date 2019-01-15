@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php echo $this->Html->charset(); ?>
-    <title><?php echo $title; ?>  | Lovett Creation Softwares</title>
+    <title>
+        <?php echo $title; ?> | Lovett Creation Softwares</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script language="javascript">
         var urlForJs="<?php echo SITE_URL ?>";
@@ -59,9 +61,15 @@
 
     echo $this->Html->css('jquery-ui.theme.min.css');
     echo $this->Html->css('jquery-ui.structure.min.css');
+    ?>
+
+    <?php /* Font Awesome 5.6 .3 */ ?>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
 
 
-        /* Basic Cakephp CSS */
+
+    <?php /* Basic Cakephp CSS */
     echo $this->Html->css('home.css');
     echo $this->Html->css('base.css');
     echo $this->Html->css('lccustom.css');
@@ -73,57 +81,65 @@
 
 
 </head>
+
 <body>
 
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/members"><?= $this->Html->image("NCACE-Logo.jpg", ['width' => '86', 'height' => '23', 'alt' => 'Logo', 'style' => 'float:left; margin:0px 15px;']); ?> Membership Portal</a>
-                </div>
-        <span class="navbar-right" style="margin:15px 15px -15px 0px;">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/members">
+                    <?= $this->Html->image("NCACE-Logo.jpg", ['width' => '86', 'height' => '23', 'alt' => 'Logo', 'style' => 'float:left; margin:0px 15px;']); ?>
+                    Membership Portal</a>
+            </div>
+            <span class="navbar-right" style="margin:15px 15px -15px 0px;">
 
-            <ul class="list-inline">
-                <li><a href="#" class="navbar-link">
-                <?php if ($this->UserAuth->isLogged()) {
-                    echo __('Signed in as ') . ' ' . h($var['first_name']) . ' ' . h($var['last_name']);
-                } ?>
+                <ul class="list-inline">
+                    <li><a href="#" class="navbar-link">
+                            <?php if ($this->UserAuth->isLogged()) {
+                                echo __('Signed in as ') . ' ' . h($var['first_name']) . ' ' . h($var['last_name']);
+                            } ?>
 
-               <?php if ($this->UserAuth->isLogged()) {
-                    echo "<li>" . "  |  " . date('D, F d, Y') . "  |  " . $this->Html->link(__('Sign Out'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => 'Usermgmt']) . "</li>";
-                } else {
-                    echo "<li></li>";
-                } ?>
-                </a></li>
+                            <?php if ($this->UserAuth->isLogged()) {
+                                echo "<li>" . "  |  " . date('D, F d, Y') . "  |  " . $this->Html->link(__('Sign Out'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => 'Usermgmt']) . "</li>";
+                            } else {
+                                echo "<li></li>";
+                            } ?>
+                        </a></li>
 
-            </ul>
-        </span>
+                </ul>
+            </span>
         </div>
-        </nav>
+    </nav>
 
-            <div id="main-nav"">
+    <div id="main-nav"">
             <?php if ($this->UserAuth->isLogged()) {
                 echo $this->element('Usermgmt.dashboard');
             } ?>
             </div>
 
-    <div class="container">
+    <div class="
+        container">
         <div class="content">
-           <?php // if($this->UserAuth->isLogged()) { echo $this->element('tempmenu'); } ?>
+            <?php // if($this->UserAuth->isLogged()) { echo $this->element('tempmenu'); } ?>
             <?php echo $this->element('Usermgmt.message_notification'); ?>
             <?php echo $this->fetch('content'); ?>
             <div style="clear:both"></div>
-            
+
         </div>
     </div>
-        <div class="footer" style="display: none''>
-            <p class="muted">Copyright &copy; <?php echo date('Y', strtotime('-1 year')) . " - " . date('Y', strtotime('+2 year')); ?> North Carolina Association of Colleges and Employers. All Rights Reserved. <a href="http://lovettcreations.org/" target='_blank'>Developed By Lovett Creations</a>.</p>
+    <div class="footer" style="display: none''>
+            <p class=" muted">Copyright &copy;
+        <?php echo date('Y', strtotime('-1 year')) . " - " . date('Y', strtotime('+2 year')); ?> North Carolina
+        Association of Colleges and Employers. All Rights Reserved. <a href="http://lovettcreations.org/" target='_blank'>Developed
+            By Lovett Creations</a>.</p>
     </div>
 
 </body>
+
 </html>
