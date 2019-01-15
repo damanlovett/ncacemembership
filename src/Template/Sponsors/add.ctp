@@ -5,7 +5,7 @@
  */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
+    <ul class="side-nav" style="display:none;">
         <li class="heading">
             <?= __('Actions') ?>
         </li>
@@ -58,7 +58,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <?php if (!empty($sponsorship)) : ?>
-                    <table class="table table-bordered table-striped table-condensed table-hover">
+                    <table class="table table-bordered table-condensed table-hover">
                         <?php $previous = ''; ?>
                         <?php foreach ($sponsorship as $sponsoredItems) : ?>
 
@@ -66,8 +66,9 @@
                             echo '<tr>';
                         } else { ?>
                         <tr>
-                            <td colspan="5">
-                                <?= h($sponsoredItems->sponsored_level->name) ?>
+                            <td colspan="5" style="background-color:grey; color:white;">
+                                <strong>
+                                    <?= h($sponsoredItems->sponsored_level->name) ?></strong>
                             </td>
                         </tr>
                         <?php 
@@ -96,7 +97,7 @@
                 </div>
                 <div class="col-md-4">
 
-                    <h3>Cart</h3>
+                    <h3><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Cart</h3>
                     <table class="table table-striped table-bordered table-condensed table-hover">
                         <tbody>
                             <?php $total_amount = 0; ?>
@@ -104,7 +105,7 @@
                             <?php $total_amount = $total_amount + $sponsorlist->sponsored_item->amount; ?>
                             <tr>
                                 <td>
-                                    <?= $sponsorlist->has('sponsored_item') ? $this->Html->link($sponsorlist->sponsored_item->name, ['controller' => 'SponsoredItems', 'action' => 'view', $sponsorlist->sponsored_item->id]) : '' ?>
+                                    <?= $sponsorlist->has('sponsored_item') ? $sponsorlist->sponsored_item->name : ''; ?>
                                 </td>
                                 <td>
                                     <?php if ($sponsorlist->sponsored_item->amount == 0) {
