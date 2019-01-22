@@ -23,6 +23,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 ?>
 <?php
 namespace Usermgmt\Controller;
+
 use Usermgmt\Controller\UsermgmtAppController;
 use Cake\Event\Event;
 use Cake\Core\Configure;
@@ -32,7 +33,8 @@ use Cake\Datasource\ConnectionManager;
 use Cake\ORM\Table;
 use Cake\Mailer\Email;
 
-class UsersController extends UsermgmtAppController {
+class UsersController extends UsermgmtAppController
+{
 	/**
 	 * This controller uses following components
 	 *
@@ -45,7 +47,7 @@ class UsersController extends UsermgmtAppController {
 	 * @var array
 	 */
 	public $paginate = [
-		'limit'=>25
+		'limit' => 25
 	];
 	/**
 	 * This controller uses search filters in following functions for ex index, online function
@@ -53,83 +55,83 @@ class UsersController extends UsermgmtAppController {
 	 * @var array
 	 */
 	public $searchFields = [
-		'members'=>[
-			'Usermgmt.Users'=>[
-				'Users'=>[
-					'type'=>'text',
-					'label'=>'Search',
-					'tagline'=>'Search by name, username, email',
-					'condition'=>'multiple',
-					'searchFields'=>['Users.first_name', 'Users.last_name', 'Users.username', 'Users.email'],
-					'searchFunc'=>['plugin'=>'Usermgmt', 'controller'=>'Users', 'function'=>'indexSearch'],
-					'inputOptions'=>['style'=>'width:200px;']
-				]
-			]
-				],
-		'index'=>[
-			'Usermgmt.Users'=>[
-				'Users'=>[
-					'type'=>'text',
-					'label'=>'Search',
-					'tagline'=>'Search by name, username, email',
-					'condition'=>'multiple',
-					'searchFields'=>['Users.first_name', 'Users.last_name', 'Users.username', 'Users.email'],
-					'searchFunc'=>['plugin'=>'Usermgmt', 'controller'=>'Users', 'function'=>'indexSearch'],
-					'inputOptions'=>['style'=>'width:200px;']
-				],
-				'Users.id'=>[
-					'type'=>'text',
-					'condition'=>'=',
-					'label'=>'User Id',
-					'inputOptions'=>['style'=>'width:50px;']
-				],
-				'Users.user_group_id'=>[
-					'type'=>'select',
-					'condition'=>'comma',
-					'label'=>'Group',
-					'model'=>'Usermgmt.UserGroups',
-					'selector'=>'getUserGroups'
-				],
-				'Users.email_verified'=>[
-					'type'=>'select',
-					'label'=>'Email Verified',
-					'options'=>[''=>'Select', '0'=>'No', '1'=>'Yes']
-				],
-				'Users.active'=>[
-					'type'=>'select',
-					'label'=>'Status',
-					'options'=>[''=>'Select', '1'=>'Active', '0'=>'Inactive']
-				],
-				'Users.ncace_status'=>[
-					'type'=>'select',
-					'label'=>'NCACE Status',
-					'options'=>[''=>'Select', '1'=>'Current', '0'=>'Pending']
-				],
-				'Users.created1'=>[
-					'type'=>'text',
-					'condition'=>'>=',
-					'label'=>'From',
-					'searchField'=>'created',
-					'inputOptions'=>['style'=>'width:100px;', 'class'=>'datepicker']
-				],
-				'Users.created2'=>[
-					'type'=>'text',
-					'condition'=>'<=',
-					'label'=>'To',
-					'searchField'=>'created',
-					'inputOptions'=>['style'=>'width:100px;', 'class'=>'datepicker']
+		'members' => [
+			'Usermgmt.Users' => [
+				'Users' => [
+					'type' => 'text',
+					'label' => 'Search',
+					'tagline' => 'Search by name, username, email',
+					'condition' => 'multiple',
+					'searchFields' => ['Users.first_name', 'Users.last_name', 'Users.username', 'Users.email'],
+					'searchFunc' => ['plugin' => 'Usermgmt', 'controller' => 'Users', 'function' => 'indexSearch'],
+					'inputOptions' => ['style' => 'width:200px;']
 				]
 			]
 		],
-		'online'=>[
-			'Usermgmt.UserActivities'=>[
-				'UserActivities'=>[
-					'type'=>'text',
-					'label'=>'Search',
-					'tagline'=>'Search by name, email, ip address',
-					'condition'=>'multiple',
-					'searchFields'=>['Users.first_name', 'Users.last_name', 'Users.email', 'UserActivities.ip_address'],
-					'inputOptions'=>['style'=>'width:200px;']
+		'index' => [
+			'Usermgmt.Users' => [
+				'Users' => [
+					'type' => 'text',
+					'label' => 'Search',
+					'tagline' => 'Search by name, username, email',
+					'condition' => 'multiple',
+					'searchFields' => ['Users.first_name', 'Users.last_name', 'Users.username', 'Users.email'],
+					'searchFunc' => ['plugin' => 'Usermgmt', 'controller' => 'Users', 'function' => 'indexSearch'],
+					'inputOptions' => ['style' => 'width:200px;']
+				],
+				'Users.id' => [
+					'type' => 'text',
+					'condition' => '=',
+					'label' => 'User Id',
+					'inputOptions' => ['style' => 'width:50px;']
+				],
+				'Users.user_group_id' => [
+					'type' => 'select',
+					'condition' => 'comma',
+					'label' => 'Group',
+					'model' => 'Usermgmt.UserGroups',
+					'selector' => 'getUserGroups'
+				],
+				'Users.email_verified' => [
+					'type' => 'select',
+					'label' => 'Email Verified',
+					'options' => ['' => 'Select', '0' => 'No', '1' => 'Yes']
+				],
+				'Users.active' => [
+					'type' => 'select',
+					'label' => 'Status',
+					'options' => ['' => 'Select', '1' => 'Active', '0' => 'Inactive']
+				],
+				'Users.ncace_status' => [
+					'type' => 'select',
+					'label' => 'NCACE Status',
+					'options' => ['' => 'Select', '1' => 'Current', '0' => 'Pending']
+				],
+				'Users.created1' => [
+					'type' => 'text',
+					'condition' => '>=',
+					'label' => 'From',
+					'searchField' => 'created',
+					'inputOptions' => ['style' => 'width:100px;', 'class' => 'datepicker']
+				],
+				'Users.created2' => [
+					'type' => 'text',
+					'condition' => '<=',
+					'label' => 'To',
+					'searchField' => 'created',
+					'inputOptions' => ['style' => 'width:100px;', 'class' => 'datepicker']
+				]
+			]
+		],
+		'online' => [
+			'Usermgmt.UserActivities' => [
+				'UserActivities' => [
+					'type' => 'text',
+					'label' => 'Search',
+					'tagline' => 'Search by name, email, ip address',
+					'condition' => 'multiple',
+					'searchFields' => ['Users.first_name', 'Users.last_name', 'Users.email', 'UserActivities.ip_address'],
+					'inputOptions' => ['style' => 'width:200px;']
 				]
 			]
 		]
@@ -140,138 +142,180 @@ class UsersController extends UsermgmtAppController {
 	 *
 	 * @return void
 	 */
-	public function beforeFilter(Event $event) {
+	public function beforeFilter(Event $event)
+	{
 		parent::beforeFilter($event);
 		$this->set('title', 'Members');
 		$this->loadModel('Usermgmt.Users');
 		$this->Users->userAuth = $this->UserAuth;
 		$this->Auth->allow(['login', 'logout', 'register', 'userVerification', 'forgotPassword', 'activatePassword', 'accessDenied', 'emailVerification']);
-		if(isset($this->Security) && ($this->request->is('ajax') || $this->request['action'] == 'login' || $this->request['action'] == 'addMultipleUsers')) {
+		if (isset($this->Security) && ($this->request->is('ajax') || $this->request['action'] == 'login' || $this->request['action'] == 'addMultipleUsers')) {
 			$this->Security->config('unlockedActions', [$this->request['action']]);
 		}
 	}
 
 
 
-public function welcome($id=null,$type=null,$sign=null) {
+	public function welcome($id = null, $type = null, $sign = null)
+	{
 
 
 
-		 $userEntity = $this->Users->getUserById($id);
-         $users = $this->Users->find('all', array('conditions'=>array('Users.ncace_status'=>$type))); 
-		 $this->loadModel('Usermgmt.UserEmailTemplates');
-		 $welcome = $this->UserEmailTemplates->getEmailTemplateById($type);
-		 
-		 $header = $userEntity['first_name'];
-		 
-		 $this->loadModel('Usermgmt.UserEmailSignatures');	 		 
-		 $signature = $this->UserEmailSignatures->getEmailSignatureById($sign);		 
-		 
-		 $message = '';
-		 $message .= "<p>".$header.",</p>";
-		 $message .= $welcome['footer'];
-		 $message .= "<p>".$signature['signature']."</p>";
-      		 
-		 $email = new Email('default');
-		 $email
-		 		->template('default')
-		 		->emailFormat('both')
-		 		->from('admin@ncace.org', 'admin')
-		 		->to($userEntity['email'])
-				->subject($welcome['template_name'])
-				->send($message);
-				
-		 if ($userEntity['email']) {
-				
+		$userEntity = $this->Users->getUserById($id);
+		$users = $this->Users->find('all', array('conditions' => array('Users.ncace_status' => $type)));
+		$this->loadModel('Usermgmt.UserEmailTemplates');
+		$welcome = $this->UserEmailTemplates->getEmailTemplateById($type);
+
+		$header = $userEntity['first_name'];
+
+		$this->loadModel('Usermgmt.UserEmailSignatures');
+		$signature = $this->UserEmailSignatures->getEmailSignatureById($sign);
+
+		$message = '';
+		$message .= "<p>" . $header . ",</p>";
+		$message .= $welcome['footer'];
+		$message .= "<p>" . $signature['signature'] . "</p>";
+
+		$email = new Email('default');
+		$email
+			->template('default')
+			->emailFormat('both')
+			->from('admin@ncace.org', 'admin')
+			->to($userEntity['email'])
+			->subject($welcome['template_name'])
+			->send($message);
+
+		if ($userEntity['email']) {
+
 			$this->Flash->success(__('Email has been sent'));
-			
-		 } else {
-		 	$this->Flash->error(__('Email has not been sent'));
-		 	
-		 }
-	
-	return $this->redirect($this->referer());
-		 
-   }
+
+		} else {
+			$this->Flash->error(__('Email has not been sent'));
+
+		}
+
+		return $this->redirect($this->referer());
+
+	}
 
 
-public function reminder($id=null,$type=null,$sign=null) {
+	public function reminder($id = null, $type = null, $sign = null)
+	{
 
-		 $userEntity = $this->Users->getUserById($id);
-         $users = $this->Users->find('all', array('conditions'=>array('Users.ncace_status'=>$type))); 
-		 $this->loadModel('Usermgmt.UserEmailTemplates');
-		 $welcome = $this->UserEmailTemplates->getEmailTemplateById($type);
-		 
-		 $header = $userEntity['first_name'];
+		$userEntity = $this->Users->getUserById($id);
+		$users = $this->Users->find('all', array('conditions' => array('Users.ncace_status' => $type)));
+		$this->loadModel('Usermgmt.UserEmailTemplates');
+		$welcome = $this->UserEmailTemplates->getEmailTemplateById($type);
+
+		$header = $userEntity['first_name'];
 		 //$headers.="MIME-Version: 1.0\n";
 		 //$headers.="Content-type: text/html; charset=iso 8859-1";
-		 
-		 $this->loadModel('Usermgmt.UserEmailSignatures');	 		 
-		 $signature = $this->UserEmailSignatures->getEmailSignatureById($sign);		 
-		 
-		 $message = '';
-		 $message .= $welcome['footer'];
-		 $message .="<p>".$userEntity['first_name']."  ".$userEntity['last_name'];
-		 $message .=" has a new a new transactions entered.  Please log";
-		 $message .=" into the system <a href='http://members.ncace.org'>http://members.ncace.org</a> and process the transaction.</p>";
-		 $message .="<p><hr/>";
-		 $message .=$signature['signature']."</p>";
-      		 
-		 $email = new Email('default');
-		 $email
-		 		->template('default')
-		 		->emailFormat('both')
-		 		->from('admin@ncace.org', 'admin')
-		 		->to('membership@ncace.org', 'membership')
-				->subject($welcome['template_name'])
-				->send($message);		
-				
-		 if ($userEntity['email']) {
-				
+
+		$this->loadModel('Usermgmt.UserEmailSignatures');
+		$signature = $this->UserEmailSignatures->getEmailSignatureById($sign);
+
+		$message = '';
+		$message .= $welcome['footer'];
+		$message .= "<p>" . $userEntity['first_name'] . "  " . $userEntity['last_name'];
+		$message .= " has a new a new transactions entered.  Please log";
+		$message .= " into the system <a href='http://members.ncace.org'>http://members.ncace.org</a> and process the transaction.</p>";
+		$message .= "<p><hr/>";
+		$message .= $signature['signature'] . "</p>";
+
+		$email = new Email('default');
+		$email
+			->template('default')
+			->emailFormat('both')
+			->from('admin@ncace.org', 'admin')
+			->to('membership@ncace.org', 'membership')
+			->subject($welcome['template_name'])
+			->send($message);
+
+		if ($userEntity['email']) {
+
 			$this->Flash->success(__('Email has been sent'));
-			
-		 } else {
-		 	$this->Flash->error(__('Email has not been sent'));
-		 	
-		 }
-	
-	return $this->redirect($this->referer());
-		 
-   }
+
+		} else {
+			$this->Flash->error(__('Email has not been sent'));
+
+		}
+
+		return $this->redirect($this->referer());
+
+	}
 
 
+	public function thanks($total = null, $id = null)
+	{
+
+		$userEntity = $this->Users->getUserById($id);
+
+		$header = $userEntity['first_name'];
+	//$headers.="MIME-Version: 1.0\n";
+	//$headers.="Content-type: text/html; charset=iso 8859-1";
 
 
+		$message = '';
+		$message .= "<p>" . $userEntity['first_name'] . "  " . $userEntity['last_name'];
+		$message .= " has a submitted a Sponsorship Request for $" . $total . "  Please log";
+		$message .= " into the system <a href='http://members.ncace.org'>http://members.ncace.org</a> and process the transaction.</p>";
+		$message .= "<p><hr/>";
 
-public function export_emp() {
+		$email = new Email('default');
+		$email
+			->template('default')
+			->emailFormat('both')
+			->from('admin@ncace.org', 'admin')
+			->to('sbrien@uncc.edu', 'sponsorship')
+			->subject('Sponsorship Request')
+			->send($message);
+
+		if ($userEntity['email']) {
+
+			$this->Flash->success(__('Email has been sent'));
+
+		} else {
+			$this->Flash->error(__('Email has not been sent'));
+
+		}
+
+		//return $this->redirect($this->referer());
+
+	}
+
+
+	public function export_emp()
+	{
 		$this->response->download('exportEmployers.csv');
 		$data = $this->Users->find('all')->where(['Users.user_group_id' => 5]);
 		$_serialize = 'data';
-		$_header = ['ID', 'First', 'Last', 'Email','Group'];
-		$_extract = ['id', 'first_name', 'last_name', 'email','user_group_id'];
+		$_header = ['ID', 'First', 'Last', 'Email', 'Group'];
+		$_extract = ['id', 'first_name', 'last_name', 'email', 'user_group_id'];
 		$this->viewBuilder()->className('CsvView.Csv');
 		$this->set(compact('data', '_serialize', '_header', '_extract'));
 		return;
 	}
 
 
-public function members_status($id=null) {
-	
+	public function members_status($id = null)
+	{
+
 		if ($id == 1) {
-			
-		$this->response->download('active_memberships.csv');
-		
+
+			$this->response->download('active_memberships.csv');
+
 		} else {
-			
-		$this->response->download('inactive_memberships.csv');}
-		 
-		
-		
+
+			$this->response->download('inactive_memberships.csv');
+		}
+
+
+
 		$datas = $this->Users->find('all')->contain('UserDetails')->where(['Users.active' => $id])->toArray();
-			
+
 		$_serialize = 'datas';
-		$_header = ['ID', 'First', 'Last', 'Email', 'Username','organization','status'];
-		$_extract = ['id', 'first_name', 'last_name', 'email', 'username','user_detail.organization_type','user_detail.organization_status'];
+		$_header = ['ID', 'First', 'Last', 'Email', 'Username', 'organization', 'status'];
+		$_extract = ['id', 'first_name', 'last_name', 'email', 'username', 'user_detail.organization_type', 'user_detail.organization_status'];
 		$this->viewBuilder()->className('CsvView.Csv');
 		$this->set(compact('datas', '_serialize', '_header', '_extract'));
 		return;
@@ -280,21 +324,23 @@ public function members_status($id=null) {
 
 
 
-public function all_members() {
-	
+	public function all_members()
+	{
+
 		$this->response->download('membership.csv');
 		$datas = $this->Users->find('all')->contain('UserDetails')->toArray();
-			
+
 		$_serialize = 'datas';
-		$_header = ['ID', 'First', 'Last', 'Email', 'Username','organization','status'];
-		$_extract = ['id', 'first_name', 'last_name', 'email', 'username','user_detail.organization_type','user_detail.organization_status'];
+		$_header = ['ID', 'First', 'Last', 'Email', 'Username', 'organization', 'status'];
+		$_extract = ['id', 'first_name', 'last_name', 'email', 'username', 'user_detail.organization_type', 'user_detail.organization_status'];
 		$this->viewBuilder()->className('CsvView.Csv');
 		$this->set(compact('datas', '_serialize', '_header', '_extract'));
 		return;
 	}
 
 
-public function college_membership() {
+	public function college_membership()
+	{
 		$this->response->download('college_membership.csv');
 		$data = $this->Users->find('all')->contain('UserDetails')->where(['Users.user_group_id' => 4])->toArray();
 		$_serialize = 'data';
@@ -305,7 +351,8 @@ public function college_membership() {
 		return;
 	}
 
-public function employer_membership() {
+	public function employer_membership()
+	{
 		$this->response->download('employer_membership.csv');
 		$data = $this->Users->find('all')->contain('UserDetails')->where(['UserDetails.organization_type' => 'Employer / Company'])->toArray();
 		$_serialize = 'data';
@@ -319,45 +366,47 @@ public function employer_membership() {
 
 
 
-/**
+	/**
 	 * Used to reset NCACE status by Admin
 	 *
 	 * @access public
 	 * @return array
 	 */
-	public function reset_membership($id=null) {
+	public function reset_membership($id = null)
+	{
 
-			$connection = ConnectionManager::get('default');
-			$connection->update('users', ['ncace_status' => $id], ['ncace_status' <> $id, 'active' => 1]);
+		$connection = ConnectionManager::get('default');
+		$connection->update('users', ['ncace_status' => $id], ['ncace_status' <> $id, 'active' => 1]);
 
-			if($id == 1){
+		if ($id == 1) {
 			$this->Flash->success(__('All active members have been set to Current Status'));
-				} else {
+		} else {
 			$this->Flash->error(__('All active members have been set to Renewal Status'));
-				}
-    		return $this->redirect($this->referer());
+		}
+		return $this->redirect($this->referer());
 
-}
+	}
 
-/**
+	/**
 	 * Used to reset NCACE member status by Admin
 	 *
 	 * @access public
 	 * @return array
 	 */
-	public function reset_member($id=null,$setto=null) {
+	public function reset_member($id = null, $setto = null)
+	{
 
-			$connection = ConnectionManager::get('default');
-			$connection->update('users', ['ncace_status' => $setto], ['id' => $id]);
+		$connection = ConnectionManager::get('default');
+		$connection->update('users', ['ncace_status' => $setto], ['id' => $id]);
 
-			if($id == 1){
+		if ($id == 1) {
 			$this->Flash->success(__('This member has been set to Current Status'));
-				} else {
+		} else {
 			$this->Flash->success(__('This members has been set to Renewal Status'));
-				}
-    		return $this->redirect($this->referer());
+		}
+		return $this->redirect($this->referer());
 
-}
+	}
 
 	/**
 	 * It displays dashboard for logged in user
@@ -365,21 +414,22 @@ public function employer_membership() {
 	 * @access public
 	 * @return array
 	 */
-	public function dashboard() {
+	public function dashboard()
+	{
 		/* Do here something for user */
-		
-	 
-		 if($this->UserAuth->isLogged()) {
+
+
+		if ($this->UserAuth->isLogged()) {
 
 			$this->loadModel('Announcements');
 			$mainAnnouncement = $this->Announcements->get(1);
 			$this->set('mainAnnouncement', $mainAnnouncement);
 			$this->set('_serialize', ['mainAnnouncement']);
-		   
-			} else {
-				$this->redirect(['action'=>'login']);
-			}
-		 
+
+		} else {
+			$this->redirect(['action' => 'login']);
+		}
+
 	}
 
 
@@ -389,17 +439,18 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function index() {
-		
-		$this->paginate = ['limit'=>10, 'order'=>['Users.id'=>'DESC']];
+	public function index()
+	{
+
+		$this->paginate = ['limit' => 10, 'order' => ['Users.id' => 'DESC']];
 		$this->Search->applySearch();
 		$users = $this->paginate($this->Users)->toArray();
 		$this->loadModel('Usermgmt.UserGroups');
-		foreach($users as $key=>$user) {
+		foreach ($users as $key => $user) {
 			$users[$key]['user_group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
 		}
 		$this->set(compact('users'));
-		if($this->request->is('ajax')) {
+		if ($this->request->is('ajax')) {
 			$this->viewBuilder()->layout('ajax');
 			$this->render('/Element/all_users');
 		}
@@ -412,15 +463,16 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function members() {
+	public function members()
+	{
 		$this->set('title', 'NCACE Members');
-		$this->paginate = ['limit'=>20, 'order'=>['Users.last_name'=>'asc']];
+		$this->paginate = ['limit' => 20, 'order' => ['Users.last_name' => 'asc']];
 		$this->Search->applySearch();
 		$users = $this->paginate($this->Users)->toArray();
 		$this->loadModel('Usermgmt.UserGroups');
-		foreach($users as $key=>$user) {
+		foreach ($users as $key => $user) {
 			$users[$key]['user_group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
-		}	
+		}
 		$this->set(compact('users'));
 		$this->loadModel('Usermgmt.UserEmailSignatures');
 		$questions = $this->UserEmailSignatures->getEmailSignatureById('1');
@@ -430,11 +482,11 @@ public function employer_membership() {
 
 
 
-		if($this->request->is('ajax')) {
+		if ($this->request->is('ajax')) {
 			$this->viewBuilder()->layout('ajax');
 			$this->render('/Element/members');
 		}
-		
+
 	}
 	/**
 	 * It displays search suggestions on all users index page
@@ -442,27 +494,28 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function indexSearch() {
+	public function indexSearch()
+	{
 		$resultToPrint = [];
-		if($this->request->is('ajax')) {
+		if ($this->request->is('ajax')) {
 			$results = [];
-			if(isset($_GET['term'])) {
+			if (isset($_GET['term'])) {
 				$query = $_GET['term'];
 				$results = $this->Users->find()
-							->select(['Users.username', 'Users.first_name', 'Users.last_name', 'Users.email'])
-							->where(['OR'=>[['Users.username LIKE'=>$query.'%'], ['Users.first_name LIKE'=>$query.'%'], ['Users.last_name LIKE'=>$query.'%'], ['Users.email LIKE'=>'%'.$query.'%@%']]])
-							->hydrate(false)
-							->toArray();
+					->select(['Users.username', 'Users.first_name', 'Users.last_name', 'Users.email'])
+					->where(['OR' => [['Users.username LIKE' => $query . '%'], ['Users.first_name LIKE' => $query . '%'], ['Users.last_name LIKE' => $query . '%'], ['Users.email LIKE' => '%' . $query . '%@%']]])
+					->hydrate(false)
+					->toArray();
 			}
 			$usernames = $names = $emails = [];
-			foreach($results as $res) {
-				if(stripos($res['first_name'], $query) !== false || stripos($res['last_name'], $query) !== false) {
-					$names[] = $res['first_name'].' '.$res['last_name'];
+			foreach ($results as $res) {
+				if (stripos($res['first_name'], $query) !== false || stripos($res['last_name'], $query) !== false) {
+					$names[] = $res['first_name'] . ' ' . $res['last_name'];
 				}
-				if(stripos($res['email'], $query) !== false) {
+				if (stripos($res['email'], $query) !== false) {
 					$emails[] = $res['email'];
 				}
-				if(stripos($res['username'], $query) !== false) {
+				if (stripos($res['username'], $query) !== false) {
 					$usernames[] = $res['username'];
 				}
 			}
@@ -470,11 +523,12 @@ public function employer_membership() {
 			$emails = array_unique($emails);
 			$usernames = array_unique($usernames);
 			$res = array_merge($usernames, $names, $emails);
-			foreach($res as $row) {
-				$resultToPrint[] = ['name'=>$row];
+			foreach ($res as $row) {
+				$resultToPrint[] = ['name' => $row];
 			}
 		}
-		echo json_encode($resultToPrint);exit;
+		echo json_encode($resultToPrint);
+		exit;
 	}
 	/**
 	 * It displays all online users with in specified time
@@ -482,16 +536,17 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function online() {
+	public function online()
+	{
 		$this->loadModel('Usermgmt.UserActivities');
 		$cond = [];
-		$cond['UserActivities.modified >'] = date('Y-m-d H:i:s', strtotime('-'.VIEW_ONLINE_USER_TIME.' minutes', time()));
+		$cond['UserActivities.modified >'] = date('Y-m-d H:i:s', strtotime('-' . VIEW_ONLINE_USER_TIME . ' minutes', time()));
 		$cond['UserActivities.logout'] = 0;
-		$this->paginate = ['limit'=>10, 'order'=>['UserActivities.last_action'=>'DESC'], 'conditions'=>$cond, 'contain'=>['Users']];
+		$this->paginate = ['limit' => 10, 'order' => ['UserActivities.last_action' => 'DESC'], 'conditions' => $cond, 'contain' => ['Users']];
 		$this->Search->applySearch($cond);
 		$users = $this->paginate($this->UserActivities)->toArray();
 		$this->set('users', $users);
-		if($this->request->is('ajax')) {
+		if ($this->request->is('ajax')) {
 			$this->viewBuilder()->layout('ajax');
 			$this->render('/Element/online_users');
 		}
@@ -502,43 +557,45 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function addUser() {
+	public function addUser()
+	{
 		$this->loadModel('Usermgmt.UserDetails');
-		if(!empty($this->request->data)) {
-			if(is_array($this->request->data['Users']['user_group_id'])) {
+		if (!empty($this->request->data)) {
+			if (is_array($this->request->data['Users']['user_group_id'])) {
 				sort($this->request->data['Users']['user_group_id']);
 				$this->request->data['Users']['user_group_id'] = implode(',', $this->request->data['Users']['user_group_id']);
 			}
 		}
-		$userEntity = $this->Users->newEntity($this->request->data, ['validate'=>'forAddUser', 'associated'=>['UserDetails'=>['validate'=>'forAddUser']]]);
-		if($this->request->is('post')) {
+		$userEntity = $this->Users->newEntity($this->request->data, ['validate' => 'forAddUser', 'associated' => ['UserDetails' => ['validate' => 'forAddUser']]]);
+		if ($this->request->is('post')) {
 			$errors = $userEntity->errors();
-			if($this->request->is('ajax')) {
-				if(empty($errors)) {
-					$response = ['error'=>0, 'message'=>'success'];
+			if ($this->request->is('ajax')) {
+				if (empty($errors)) {
+					$response = ['error' => 0, 'message' => 'success'];
 				} else {
-					$response = ['error'=>1, 'message'=>'failure'];
+					$response = ['error' => 1, 'message' => 'failure'];
 					$response['data']['Users'] = $errors;
 				}
-				echo json_encode($response);exit;
+				echo json_encode($response);
+				exit;
 			} else {
-				if(empty($errors)) {
+				if (empty($errors)) {
 					$userEntity['active'] = 1;
 					$userEntity['email_verified'] = 1;
 					$userEntity['created_by'] = $this->UserAuth->getUserId();
 					$userEntity['password'] = $this->UserAuth->makeHashedPassword($userEntity['password']);
 					$userEntity['first_name'] = $userEntity['first_name'];
 					$userEntity['last_name'] = $userEntity['last_name'];
-					if($this->Users->save($userEntity, ['validate'=>false])) {
-						if(!isset($userEntity['user_detail']['id'])) {
+					if ($this->Users->save($userEntity, ['validate' => false])) {
+						if (!isset($userEntity['user_detail']['id'])) {
 							$userId = $userEntity['id'];
 							$this->loadModel('Usermgmt.UserDetails');
 							$userDetailEntity = $this->UserDetails->newEntity();
 							$userDetailEntity['user_id'] = $userId;
-							$this->UserDetails->save($userDetailEntity, ['validate'=>false]);
+							$this->UserDetails->save($userDetailEntity, ['validate' => false]);
 						}
 						$this->Flash->success(__('The user has been added successfully'));
-						$this->redirect(['action'=>'index']);
+						$this->redirect(['action' => 'index']);
 					} else {
 						$this->Flash->error(__('Unable to save user, please try again'));
 					}
@@ -556,79 +613,80 @@ public function employer_membership() {
 	 * @param integer $userId user id
 	 * @return void
 	 */
-	public function editUser($userId=null) {
+	public function editUser($userId = null)
+	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
-		if($userId) {
+		if ($userId) {
 			$userEntity = $this->Users->getUserById($userId);
-			if(!empty($userEntity)) {
+			if (!empty($userEntity)) {
 				$this->loadModel('Usermgmt.UserDetails');
-				if(!empty($this->request->data)) {
-					if(is_array($this->request->data['Users']['user_group_id'])) {
+				if (!empty($this->request->data)) {
+					if (is_array($this->request->data['Users']['user_group_id'])) {
 						sort($this->request->data['Users']['user_group_id']);
 						$this->request->data['Users']['user_group_id'] = implode(',', $this->request->data['Users']['user_group_id']);
 					}
 				}
 				$oldUserGroupId = $userEntity['user_group_id'];
-				$this->Users->patchEntity($userEntity, $this->request->data, ['validate'=>'forEditUser', 'associated'=>['UserDetails'=>['validate'=>'forEditUser']]]);
-				if($this->request->is(['post', 'put'])) {
+				$this->Users->patchEntity($userEntity, $this->request->data, ['validate' => 'forEditUser', 'associated' => ['UserDetails' => ['validate' => 'forEditUser']]]);
+				if ($this->request->is(['post', 'put'])) {
 					$errors = $userEntity->errors();
-					if($this->request->is('ajax')) {
-						if(empty($errors)) {
-							$response = ['error'=>0, 'message'=>'success'];
+					if ($this->request->is('ajax')) {
+						if (empty($errors)) {
+							$response = ['error' => 0, 'message' => 'success'];
 						} else {
-							$response = ['error'=>1, 'message'=>'failure'];
+							$response = ['error' => 1, 'message' => 'failure'];
 							$response['data']['Users'] = $errors;
 						}
-						echo json_encode($response);exit;
+						echo json_encode($response);
+						exit;
 					} else {
-						if(empty($errors)) {
-							if(!empty($this->request->data['Users']['photo_file']['tmp_name']) && is_uploaded_file($this->request->data['Users']['photo_file']['tmp_name']))
-							{
+						if (empty($errors)) {
+							if (!empty($this->request->data['Users']['photo_file']['tmp_name']) && is_uploaded_file($this->request->data['Users']['photo_file']['tmp_name'])) {
 								$path_info = pathinfo($this->request->data['Users']['photo_file']['name']);
 								chmod($this->request->data['Users']['photo_file']['tmp_name'], 0644);
-								$photo = time().mt_rand().".".$path_info['extension'];
-								$fullpath = WWW_ROOT."library".DS.IMG_DIR;
-								if(!is_dir($fullpath)) {
+								$photo = time() . mt_rand() . "." . $path_info['extension'];
+								$fullpath = WWW_ROOT . "library" . DS . IMG_DIR;
+								if (!is_dir($fullpath)) {
 									mkdir($fullpath, 0777, true);
 								}
-								move_uploaded_file($this->request->data['Users']['photo_file']['tmp_name'], $fullpath.DS.$photo);
+								move_uploaded_file($this->request->data['Users']['photo_file']['tmp_name'], $fullpath . DS . $photo);
 								$existing_photo = $userEntity['photo'];
 								$userEntity['photo'] = $photo;
-								if(!empty($existing_photo) && file_exists($fullpath.DS.$existing_photo)) {
-									unlink($fullpath.DS.$existing_photo);
+								if (!empty($existing_photo) && file_exists($fullpath . DS . $existing_photo)) {
+									unlink($fullpath . DS . $existing_photo);
 								}
 							}
 							$userEntity['modified_by'] = $this->UserAuth->getUserId();
-							if($oldUserGroupId != $userEntity['user_group_id']) {
+							if ($oldUserGroupId != $userEntity['user_group_id']) {
 								$this->loadModel('Usermgmt.UserActivities');
-								$this->UserActivities->updateAll(['logout'=>1], ['user_id'=>$userId]);
+								$this->UserActivities->updateAll(['logout' => 1], ['user_id' => $userId]);
 							}
-							if(!empty($this->request->data['Users']['bday'])) {
+							if (!empty($this->request->data['Users']['bday'])) {
 								$userEntity['bday'] = new Time($this->request->data['Users']['bday']);
 							}
-							if($this->Users->save($userEntity, ['validate'=>false])) {
+							if ($this->Users->save($userEntity, ['validate' => false])) {
 								$this->Flash->success(__('The user has been updated successfully'));
-								$this->redirect(['action'=>'index', 'page'=>$page]);
+								$this->redirect(['action' => 'index', 'page' => $page]);
 							} else {
 								$this->Flash->error(__('Unable to save user, please try again'));
 							}
 						}
 					}
 				} else {
-					if(!empty($userEntity['bday'])) {
+					if (!empty($userEntity['bday'])) {
 						$userEntity['bday'] = $userEntity['bday']->format('Y-m-d');
 					}
-					if(!empty($userEntity['user_group_id'])) {
+					if (!empty($userEntity['user_group_id'])) {
 						$userEntity['user_group_id'] = explode(',', $userEntity['user_group_id']);
 					}
 				}
 			} else {
 				$this->Flash->error(__('Invalid user id'));
-				$this->redirect(['action'=>'index', 'page'=>$page]);
+				$this->redirect(['action' => 'index', 'page' => $page]);
 			}
 		} else {
 			$this->Flash->error(__('Missing user id'));
-			$this->redirect(['action'=>'index', 'page'=>$page]);
+			$this->redirect(['action' => 'index', 'page' => $page]);
 		}
 		$this->loadModel('Usermgmt.UserGroups');
 		$userGroups = $this->UserGroups->getUserGroups(false);
@@ -636,7 +694,7 @@ public function employer_membership() {
 		$otypes = $this->Users->getOtypes(false);
 		$ostatus = $this->Users->getOstatus(false);
 		$mstatus = $this->Users->getMstatus(false);
-		$this->set(compact('userGroups', 'userEntity', 'genders','otypes','ostatus','mstatus'));
+		$this->set(compact('userGroups', 'userEntity', 'genders', 'otypes', 'ostatus', 'mstatus'));
 	}
 	/**
 	 * It displays user's full details
@@ -645,46 +703,48 @@ public function employer_membership() {
 	 * @param integer $userId user id
 	 * @return void
 	 */
-	public function viewUser($userId=null) {
+	public function viewUser($userId = null)
+	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
-		if($userId) {
+		if ($userId) {
 			$user = $this->Users->getUserById($userId);
-			if(!empty($user)) {
+			if (!empty($user)) {
 				$this->loadModel('Usermgmt.UserGroups');
 				$user['group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
 				$user['created_by'] = $this->Users->getNameById($user['created_by']);
 			} else {
 				$this->Flash->error(__('Invalid user id'));
-				$this->redirect(['action'=>'index', 'page'=>$page]);
+				$this->redirect(['action' => 'index', 'page' => $page]);
 			}
 		} else {
 			$this->Flash->error(__('Missing user id'));
-			$this->redirect(['action'=>'index', 'page'=>$page]);
+			$this->redirect(['action' => 'index', 'page' => $page]);
 		}
 		$this->set(compact('user', 'userId'));
 	}
-		/**
+	/**
 	 * It displays members's full details
 	 *
 	 * @access public
 	 * @param integer $userId user id
 	 * @return void
 	 */
-	public function viewMember($userId=null) {
+	public function viewMember($userId = null)
+	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
-		if($userId) {
+		if ($userId) {
 			$user = $this->Users->getUserById($userId);
-			if(!empty($user)) {
+			if (!empty($user)) {
 				$this->loadModel('Usermgmt.UserGroups');
 				$user['group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
 				$user['created_by'] = $this->Users->getNameById($user['created_by']);
 			} else {
 				$this->Flash->error(__('Invalid user id'));
-				$this->redirect(['action'=>'index', 'page'=>$page]);
+				$this->redirect(['action' => 'index', 'page' => $page]);
 			}
 		} else {
 			$this->Flash->error(__('Missing user id'));
-			$this->redirect(['action'=>'index', 'page'=>$page]);
+			$this->redirect(['action' => 'index', 'page' => $page]);
 		}
 		$this->set(compact('user', 'userId'));
 	}
@@ -695,28 +755,29 @@ public function employer_membership() {
 	 * @param integer $userId user id
 	 * @return void
 	 */
-	public function membership($userId=null) {
+	public function membership($userId = null)
+	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
-		if($userId) {
+		if ($userId) {
 			$user = $this->Users->getUserById($userId);
-			if(!empty($user)) {
+			if (!empty($user)) {
 				$this->loadModel('Usermgmt.UserGroups');
 				$user['group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
 				$user['created_by'] = $this->Users->getNameById($user['created_by']);
 				$this->loadModel('Transactions');
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
-        $transactions = $this->paginate($this->Transactions);
+				$this->paginate = [
+					'contain' => ['Users']
+				];
+				$transactions = $this->paginate($this->Transactions);
 
 
 			} else {
 				$this->Flash->error(__('Invalid user id'));
-				$this->redirect(['action'=>'index', 'page'=>$page]);
+				$this->redirect(['action' => 'index', 'page' => $page]);
 			}
 		} else {
 			$this->Flash->error(__('Missing user id'));
-			$this->redirect(['action'=>'index', 'page'=>$page]);
+			$this->redirect(['action' => 'index', 'page' => $page]);
 		}
 		$this->set(compact('user', 'userId', 'transactions'));
 	}
@@ -731,19 +792,20 @@ public function employer_membership() {
 	 * @param integer $userId user id of user
 	 * @return void
 	 */
-	public function deleteUser($userId=null) {
+	public function deleteUser($userId = null)
+	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
-		if(!empty($userId)) {
-			$user = $this->Users->find()->where(['Users.id'=>$userId])->first();
-			if(!empty($user)) {
-				if($this->request->is('post')) {
-					if($this->Users->delete($user)) {
+		if (!empty($userId)) {
+			$user = $this->Users->find()->where(['Users.id' => $userId])->first();
+			if (!empty($user)) {
+				if ($this->request->is('post')) {
+					if ($this->Users->delete($user)) {
 						$this->loadModel('UserDetails');
 						$this->loadModel('LoginTokens');
 						$this->loadModel('UserActivities');
-						$this->UserDetails->deleteAll(['user_id'=>$userId]);
-						$this->LoginTokens->deleteAll(['user_id'=>$userId]);
-						$this->UserActivities->updateAll(['deleted'=>1], ['user_id'=>$userId]);
+						$this->UserDetails->deleteAll(['user_id' => $userId]);
+						$this->LoginTokens->deleteAll(['user_id' => $userId]);
+						$this->UserActivities->updateAll(['deleted' => 1], ['user_id' => $userId]);
 						$this->Flash->success(__('Selected user is deleted successfully'));
 					} else {
 						$this->Flash->error(__('Unable to delete user, please try again'));
@@ -755,7 +817,7 @@ public function employer_membership() {
 		} else {
 			$this->Flash->error(__('Missing User Id'));
 		}
-		$this->redirect(['action'=>'index', 'page'=>$page]);
+		$this->redirect(['action' => 'index', 'page' => $page]);
 	}
 	/**
 	 * It is used to activate user
@@ -764,18 +826,19 @@ public function employer_membership() {
 	 * @param integer $userId user id
 	 * @return void
 	 */
-	public function setActive($userId=null) {
+	public function setActive($userId = null)
+	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
-		if(!empty($userId)) {
-			$user = $this->Users->find()->where(['Users.id'=>$userId])->first();
-			if(!empty($user)) {
-				if($this->request->is('post')) {
+		if (!empty($userId)) {
+			$user = $this->Users->find()->where(['Users.id' => $userId])->first();
+			if (!empty($user)) {
+				if ($this->request->is('post')) {
 					$userEntity = $this->Users->newEntity();
 					$userEntity['id'] = $userId;
 					$userEntity['active'] = 1;
-					$this->Users->save($userEntity, ['validate'=>false]);
+					$this->Users->save($userEntity, ['validate' => false]);
 					$this->loadModel('Usermgmt.UserActivities');
-					$this->UserActivities->updateAll(['logout'=>0], ['user_id'=>$userId]);
+					$this->UserActivities->updateAll(['logout' => 0], ['user_id' => $userId]);
 					$this->Flash->success(__('Selected user is activated successfully'));
 				}
 			} else {
@@ -784,7 +847,7 @@ public function employer_membership() {
 		} else {
 			$this->Flash->error(__('Missing User Id'));
 		}
-		$this->redirect(['action'=>'index', 'page'=>$page]);
+		$this->redirect(['action' => 'index', 'page' => $page]);
 	}
 	/**
 	 * It is used to inactivate user
@@ -793,18 +856,19 @@ public function employer_membership() {
 	 * @param integer $userId user id
 	 * @return void
 	 */
-	public function setInactive($userId=null) {
+	public function setInactive($userId = null)
+	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
-		if(!empty($userId)) {
-			$user = $this->Users->find()->where(['Users.id'=>$userId])->first();
-			if(!empty($user)) {
-				if($this->request->is('post')) {
+		if (!empty($userId)) {
+			$user = $this->Users->find()->where(['Users.id' => $userId])->first();
+			if (!empty($user)) {
+				if ($this->request->is('post')) {
 					$userEntity = $this->Users->newEntity();
 					$userEntity['id'] = $userId;
 					$userEntity['active'] = 0;
-					$this->Users->save($userEntity, ['validate'=>false]);
+					$this->Users->save($userEntity, ['validate' => false]);
 					$this->loadModel('Usermgmt.UserActivities');
-					$this->UserActivities->updateAll(['logout'=>1], ['user_id'=>$userId]);
+					$this->UserActivities->updateAll(['logout' => 1], ['user_id' => $userId]);
 					$this->Flash->success(__('Selected user is de-activated successfully'));
 				}
 			} else {
@@ -813,7 +877,7 @@ public function employer_membership() {
 		} else {
 			$this->Flash->error(__('Missing User Id'));
 		}
-		$this->redirect(['action'=>'index', 'page'=>$page]);
+		$this->redirect(['action' => 'index', 'page' => $page]);
 	}
 	/**
 	 * It is used to mark verified email of user from all users page
@@ -822,26 +886,27 @@ public function employer_membership() {
 	 * @param integer $userId user id of user
 	 * @return void
 	 */
-	public function verifyEmail($userId=null) {
+	public function verifyEmail($userId = null)
+	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
-		if(!empty($userId)) {
-			$user = $this->Users->find()->where(['Users.id'=>$userId])->first();
-			if($user) {
-				if($this->request->is('post')) {
+		if (!empty($userId)) {
+			$user = $this->Users->find()->where(['Users.id' => $userId])->first();
+			if ($user) {
+				if ($this->request->is('post')) {
 					$userEntity = $this->Users->newEntity();
 					$userEntity['id'] = $userId;
 					$userEntity['email_verified'] = 1;
-					$this->Users->save($userEntity, ['validate'=>false]);
+					$this->Users->save($userEntity, ['validate' => false]);
 					$this->Flash->success(__('Email of selected user is verified successfully'));
-					$this->redirect(['action'=>'index', 'page'=>$page]);
+					$this->redirect(['action' => 'index', 'page' => $page]);
 				}
 			} else {
 				$this->Flash->error(__('Invaid User Id'));
-				$this->redirect(['action'=>'index', 'page'=>$page]);
+				$this->redirect(['action' => 'index', 'page' => $page]);
 			}
 		} else {
 			$this->Flash->error(__('Missing User Id'));
-			$this->redirect(['action'=>'index', 'page'=>$page]);
+			$this->redirect(['action' => 'index', 'page' => $page]);
 		}
 	}
 	/**
@@ -851,42 +916,44 @@ public function employer_membership() {
 	 * @param integer $userId user id
 	 * @return void
 	 */
-	public function changeUserPassword($userId=null) {
+	public function changeUserPassword($userId = null)
+	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
-		if(!empty($userId)) {
-			$user = $this->Users->find()->where(['Users.id'=>$userId])->first();
-			if(!empty($user)) {
-				$userEntity = $this->Users->newEntity($this->request->data, ['validate'=>'forChangeUserPassword']);
-				if($this->request->is('post')) {
+		if (!empty($userId)) {
+			$user = $this->Users->find()->where(['Users.id' => $userId])->first();
+			if (!empty($user)) {
+				$userEntity = $this->Users->newEntity($this->request->data, ['validate' => 'forChangeUserPassword']);
+				if ($this->request->is('post')) {
 					$errors = $userEntity->errors();
-					if($this->request->is('ajax')) {
-						if(empty($errors)) {
-							$response = ['error'=>0, 'message'=>'success'];
+					if ($this->request->is('ajax')) {
+						if (empty($errors)) {
+							$response = ['error' => 0, 'message' => 'success'];
 						} else {
-							$response = ['error'=>1, 'message'=>'failure'];
+							$response = ['error' => 1, 'message' => 'failure'];
 							$response['data']['Users'] = $errors;
 						}
-						echo json_encode($response);exit;
+						echo json_encode($response);
+						exit;
 					} else {
-						if(empty($errors)) {
+						if (empty($errors)) {
 							$userEntity['id'] = $userId;
 							$userEntity['password'] = $this->UserAuth->makeHashedPassword($userEntity['password']);
-							$this->Users->save($userEntity, ['validate'=>false]);
+							$this->Users->save($userEntity, ['validate' => false]);
 							$this->loadModel('Usermgmt.LoginTokens');
-							$this->LoginTokens->deleteAll(['user_id'=>$userId]);
-							$this->Flash->success(__('Password for {0} changed successfully', [$user['first_name'].' '.$user['last_name']]));
-							$this->redirect(['action'=>'index', 'page'=>$page]);
+							$this->LoginTokens->deleteAll(['user_id' => $userId]);
+							$this->Flash->success(__('Password for {0} changed successfully', [$user['first_name'] . ' ' . $user['last_name']]));
+							$this->redirect(['action' => 'index', 'page' => $page]);
 						}
 					}
 				}
 				$this->set(compact('userEntity', 'user'));
 			} else {
 				$this->Flash->error(__('Invalid User Id'));
-				$this->redirect(['action'=>'index', 'page'=>$page]);
+				$this->redirect(['action' => 'index', 'page' => $page]);
 			}
 		} else {
 			$this->Flash->error(__('Missing User Id'));
-			$this->redirect(['action'=>'index', 'page'=>$page]);
+			$this->redirect(['action' => 'index', 'page' => $page]);
 		}
 	}
 	/**
@@ -896,14 +963,15 @@ public function employer_membership() {
 	 * @param integer $userId user id
 	 * @return void
 	 */
-	public function logoutUser($userId=null) {
+	public function logoutUser($userId = null)
+	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
-		if(!empty($userId)) {
-			$user = $this->Users->find()->where(['Users.id'=>$userId])->first();
-			if(!empty($user)) {
-				if($this->request->is('post')) {
+		if (!empty($userId)) {
+			$user = $this->Users->find()->where(['Users.id' => $userId])->first();
+			if (!empty($user)) {
+				if ($this->request->is('post')) {
 					$this->loadModel('Usermgmt.UserActivities');
-					$this->UserActivities->updateAll(['logout'=>1], ['user_id'=>$userId]);
+					$this->UserActivities->updateAll(['logout' => 1], ['user_id' => $userId]);
 					$this->Flash->success(__('User is successfully signed out'));
 				}
 			} else {
@@ -912,7 +980,7 @@ public function employer_membership() {
 		} else {
 			$this->Flash->error(__('Missing User Id'));
 		}
-		$this->redirect(['action'=>'online', 'page'=>$page]);
+		$this->redirect(['action' => 'online', 'page' => $page]);
 	}
 	/**
 	 *  It is used to view user's permissions
@@ -921,24 +989,25 @@ public function employer_membership() {
 	 * @param integer $userId user id of user
 	 * @return void
 	 */
-	public function viewUserPermissions($userId) {
+	public function viewUserPermissions($userId)
+	{
 		$name = '';
 		$permissions = [];
-		if(!empty($userId)) {
-			$user = $this->Users->find()->where(['Users.id'=>$userId])->first();
-			if(!empty($user)) {
-				$name = trim($user['first_name'].' '.$user['last_name']);
+		if (!empty($userId)) {
+			$user = $this->Users->find()->where(['Users.id' => $userId])->first();
+			if (!empty($user)) {
+				$name = trim($user['first_name'] . ' ' . $user['last_name']);
 				$userGroupIDArray = array_map('trim', explode(',', $user['user_group_id']));
 				$this->loadModel('Usermgmt.UserGroupPermissions');
-				$result = $this->UserGroupPermissions->find()->where(['UserGroupPermissions.user_group_id IN'=>$userGroupIDArray, 'UserGroupPermissions.allowed'=>1])->order(['UserGroupPermissions.plugin'=>'ASC', 'UserGroupPermissions.controller'=>'ASC'])->contain(['UserGroups'])->toArray();
-				foreach($result as $row) {
-					if(empty($row['plugin'])) {
-						$conAct = $row['controller'].'/'.$row['action'];
+				$result = $this->UserGroupPermissions->find()->where(['UserGroupPermissions.user_group_id IN' => $userGroupIDArray, 'UserGroupPermissions.allowed' => 1])->order(['UserGroupPermissions.plugin' => 'ASC', 'UserGroupPermissions.controller' => 'ASC'])->contain(['UserGroups'])->toArray();
+				foreach ($result as $row) {
+					if (empty($row['plugin'])) {
+						$conAct = $row['controller'] . '/' . $row['action'];
 					} else {
-						$conAct = $row['plugin'].'/'.$row['controller'].'/'.$row['action'];
+						$conAct = $row['plugin'] . '/' . $row['controller'] . '/' . $row['action'];
 					}
-					if(isset($permissions[$conAct])) {
-						$permissions[$conAct]['group'] .= ', '.$row['user_group']['name'];
+					if (isset($permissions[$conAct])) {
+						$permissions[$conAct]['group'] .= ', ' . $row['user_group']['name'];
 					} else {
 						$permissions[$conAct]['plugin'] = $row['plugin'];
 						$permissions[$conAct]['controller'] = $row['controller'];
@@ -956,19 +1025,20 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function uploadCsv() {
-		if($this->request->is('post')) {
-			if(!empty($this->request->data['csv_file']['tmp_name']) && is_uploaded_file($this->request->data['csv_file']['tmp_name'])) {
+	public function uploadCsv()
+	{
+		if ($this->request->is('post')) {
+			if (!empty($this->request->data['csv_file']['tmp_name']) && is_uploaded_file($this->request->data['csv_file']['tmp_name'])) {
 				$path_info = pathinfo($this->request->data['csv_file']['name']);
-				if(strtolower($path_info['extension']) == 'csv') {
+				if (strtolower($path_info['extension']) == 'csv') {
 					chmod($this->request->data['csv_file']['tmp_name'], 0644);
-					$filename = time().".".$path_info['extension'];
-					$fullpath = WWW_ROOT."files".DS."csv_users";
-					if(!is_dir($fullpath)) {
+					$filename = time() . "." . $path_info['extension'];
+					$fullpath = WWW_ROOT . "files" . DS . "csv_users";
+					if (!is_dir($fullpath)) {
 						mkdir($fullpath, 0777, true);
 					}
-					move_uploaded_file($this->request->data['csv_file']['tmp_name'], $fullpath.DS.$filename);
-					$this->redirect(['action'=>'addMultipleUsers', $filename]);
+					move_uploaded_file($this->request->data['csv_file']['tmp_name'], $fullpath . DS . $filename);
+					$this->redirect(['action' => 'addMultipleUsers', $filename]);
 				} else {
 					$this->Flash->warning(__('Please upload CSV file only'));
 				}
@@ -988,74 +1058,76 @@ public function employer_membership() {
 	 * @param string $csv_file csv file name
 	 * @return void
 	 */
-	public function addMultipleUsers($csv_file=null) {
+	public function addMultipleUsers($csv_file = null)
+	{
 		$this->set('csv_file', $csv_file);
-		if($csv_file) {
-			$fullpath = WWW_ROOT."files".DS."csv_users";
-			if(file_exists($fullpath.DS.$csv_file)) {
+		if ($csv_file) {
+			$fullpath = WWW_ROOT . "files" . DS . "csv_users";
+			if (file_exists($fullpath . DS . $csv_file)) {
 				$userEntities = $this->Users->newEntity();
 				$users = [];
-				if($this->request->is('post')) {
+				if ($this->request->is('post')) {
 					$selectedUsersCount = 0;
 					$this->Users->multiUsers = $this->request->data;
-					if(isset($this->request->data['Users'])) {
-						foreach($this->request->data['Users'] as $key=>$row) {
-							if(is_array($row['user_group_id'])) {
+					if (isset($this->request->data['Users'])) {
+						foreach ($this->request->data['Users'] as $key => $row) {
+							if (is_array($row['user_group_id'])) {
 								sort($row['user_group_id']);
 								$this->request->data['Users'][$key]['user_group_id'] = implode(',', $row['user_group_id']);
 							}
-							if(!empty($row['bday'])) {
+							if (!empty($row['bday'])) {
 								$this->request->data['Users'][$key]['bday'] = new Time($row['bday']);
 							}
-							if(isset($row['usercheck']) && $row['usercheck']) {
+							if (isset($row['usercheck']) && $row['usercheck']) {
 								$selectedUsersCount += 1;
 							}
 						}
 					}
-					if($selectedUsersCount > 0) {
-						$userEntities = $this->Users->patchEntities($userEntities, $this->request->data['Users'], ['validate'=>'forMultipleUsers', 'associated'=>['UserDetails'=>['validate'=>'forMultipleUsers']]]);
+					if ($selectedUsersCount > 0) {
+						$userEntities = $this->Users->patchEntities($userEntities, $this->request->data['Users'], ['validate' => 'forMultipleUsers', 'associated' => ['UserDetails' => ['validate' => 'forMultipleUsers']]]);
 					}
 					$errors = [];
-					foreach($userEntities as $key=>$userEntity) {
+					foreach ($userEntities as $key => $userEntity) {
 						$userError = $userEntity->errors();
-						if(isset($userEntity['usercheck']) && $userEntity['usercheck']) {
-							if(!empty($userError)) {
+						if (isset($userEntity['usercheck']) && $userEntity['usercheck']) {
+							if (!empty($userError)) {
 								$errors[$key] = $userError;
 							}
 						} else {
 							unset($userEntities[$key]);
 						}
 					}
-					if($this->request->is('ajax')) {
-						if(empty($errors)) {
-							$response = ['error'=>0, 'message'=>'success'];
+					if ($this->request->is('ajax')) {
+						if (empty($errors)) {
+							$response = ['error' => 0, 'message' => 'success'];
 						} else {
-							$response = ['error'=>1, 'message'=>'failure'];
-							foreach($errors as $key=>$val) {
-								foreach($val as $k=>$v) {
-									$response['data']['Users'][$key.'_'.$k] = $v;
+							$response = ['error' => 1, 'message' => 'failure'];
+							foreach ($errors as $key => $val) {
+								foreach ($val as $k => $v) {
+									$response['data']['Users'][$key . '_' . $k] = $v;
 								}
 							}
 						}
-						echo json_encode($response);exit;
+						echo json_encode($response);
+						exit;
 					} else {
-						foreach($this->request->data['Users'] as $key=>$row) {
-							if(!is_array($row['user_group_id'])) {
-								$this->request->data['Users'][$key]['user_group_id']  = explode(',', $row['user_group_id']);
+						foreach ($this->request->data['Users'] as $key => $row) {
+							if (!is_array($row['user_group_id'])) {
+								$this->request->data['Users'][$key]['user_group_id'] = explode(',', $row['user_group_id']);
 							}
 						}
-						if($selectedUsersCount > 0) {
-							if(empty($errors)) {
-								foreach($userEntities as $key=>$row) {
+						if ($selectedUsersCount > 0) {
+							if (empty($errors)) {
+								foreach ($userEntities as $key => $row) {
 									$userEntity = $row;
 									$userEntity['password'] = $this->UserAuth->makeHashedPassword($row['password']);
 									$userEntity['active'] = 1;
 									$userEntity['email_verified'] = 1;
 									$userEntity['created_by'] = $this->UserAuth->getUserId();
-									$this->Users->save($userEntity, ['validate'=>false, 'associated'=>['UserDetails'=>['validate'=>false]]]);
+									$this->Users->save($userEntity, ['validate' => false, 'associated' => ['UserDetails' => ['validate' => false]]]);
 								}
 								$this->Flash->success(__('All users information have been saved'));
-								$this->redirect(['action'=>'index']);
+								$this->redirect(['action' => 'index']);
 							}
 						} else {
 							$this->Flash->warning(__('Please select at least one user to add'));
@@ -1065,32 +1137,32 @@ public function employer_membership() {
 					$i = $j = 0;
 					$dataFound = false;
 					$fields1 = $fields2 = [];
-					if(($handle = fopen($fullpath.DS.$csv_file, "r")) !== false) {
-						while(($data = fgetcsv($handle, 1000, ",")) !== false) {
-							if($i == 0) {
+					if (($handle = fopen($fullpath . DS . $csv_file, "r")) !== false) {
+						while (($data = fgetcsv($handle, 1000, ",")) !== false) {
+							if ($i == 0) {
 								$fields1 = $data;
-								if(!empty($data[0])) {
+								if (!empty($data[0])) {
 									$dataFound = true;
 								}
-								foreach($data as $key=>$val) {
+								foreach ($data as $key => $val) {
 									$val = trim($val);
-									if(in_array($val, ['user_group_id', 'first_name', 'last_name', 'username', 'email', 'password', 'gender', 'bday'])) {
+									if (in_array($val, ['user_group_id', 'first_name', 'last_name', 'username', 'email', 'password', 'gender', 'bday'])) {
 										$fields2[$key] = null;
-									} else if(in_array($val, ['location', 'cellphone'])) {
+									} else if (in_array($val, ['location', 'cellphone'])) {
 										$fields2[$key] = 'user_detail';
 									}
 								}
 							} else {
-								if($dataFound) {
-									foreach($data as $key=>$val) {
+								if ($dataFound) {
+									foreach ($data as $key => $val) {
 										$val = trim($val);
-										if($fields1[$key] == 'bday') {
+										if ($fields1[$key] == 'bday') {
 											$val = date('Y-m-d', strtotime($val));
 										}
-										if($fields1[$key] == 'user_group_id') {
+										if ($fields1[$key] == 'user_group_id') {
 											$val = explode(',', $val);
 										}
-										if(is_null($fields2[$key])) {
+										if (is_null($fields2[$key])) {
 											$users['Users'][$j][$fields1[$key]] = $val;
 										} else {
 											$users['Users'][$j][$fields2[$key]][$fields1[$key]] = $val;
@@ -1104,12 +1176,12 @@ public function employer_membership() {
 						}
 						fclose($handle);
 					}
-					if(!empty($users)) {
+					if (!empty($users)) {
 						$this->request->data = $users;
 						$this->request->data['Select']['all'] = 1;
 					} else {
 						$this->Flash->info(__('Invalid or empty data in CSV file, please try again'));
-						$this->redirect(['action'=>'uploadCsv']);
+						$this->redirect(['action' => 'uploadCsv']);
 					}
 				}
 				$this->loadModel('Usermgmt.UserGroups');
@@ -1118,10 +1190,10 @@ public function employer_membership() {
 				$this->set(compact('userGroups', 'genders', 'userEntities', 'users'));
 			} else {
 				$this->Flash->info(__('CSV file was not uploaded or does not exist, please try again'));
-				$this->redirect(['action'=>'uploadCsv']);
+				$this->redirect(['action' => 'uploadCsv']);
 			}
 		} else {
-			$this->redirect(['action'=>'uploadCsv']);
+			$this->redirect(['action' => 'uploadCsv']);
 		}
 	}
 	/**
@@ -1130,7 +1202,8 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function accessDenied() {
+	public function accessDenied()
+	{
 
 	}
 	/**
@@ -1140,51 +1213,52 @@ public function employer_membership() {
 	 * @param string $connect social connect name like, fb, twt
 	 * @return void
 	 */
-	public function login($connect=null) {
+	public function login($connect = null)
+	{
 		$this->viewBuilder()->layout('login');
-		if($this->UserAuth->isLogged()) {
-			if($connect) {
+		if ($this->UserAuth->isLogged()) {
+			if ($connect) {
 				$this->render('popup');
 			} else {
-				$this->redirect(['action'=>'dashboard']);
+				$this->redirect(['action' => 'dashboard']);
 			}
 		}
-		if($connect == 'fb') {
+		if ($connect == 'fb') {
 			$this->login_facebook();
 			$this->render('popup');
-		} elseif($connect == 'twt') {
+		} elseif ($connect == 'twt') {
 			$this->login_twitter();
 			$this->render('popup');
-		} elseif($connect == 'gmail') {
+		} elseif ($connect == 'gmail') {
 			$this->login_gmail();
 			$this->render('popup');
-		} elseif($connect == 'ldn') {
+		} elseif ($connect == 'ldn') {
 			$this->login_linkedin();
 			$this->render('popup');
-		} elseif($connect == 'fs') {
+		} elseif ($connect == 'fs') {
 			$this->login_foursquare();
 			$this->render('popup');
-		} elseif($connect == 'yahoo') {
+		} elseif ($connect == 'yahoo') {
 			$this->login_yahoo();
 			$this->render('popup');
 		} else {
-			if($this->request->is('post') && $this->UserAuth->canUseRecaptha('login') && !$this->request->is('ajax')) {
+			if ($this->request->is('post') && $this->UserAuth->canUseRecaptha('login') && !$this->request->is('ajax')) {
 				$this->request->data['Users']['captcha'] = (isset($this->request->data['g-recaptcha-response'])) ? $this->request->data['g-recaptcha-response'] : "";
 			}
-			$userEntity = $this->Users->newEntity($this->request->data, ['validate'=>'forLogin']);
-			if($this->request->is('post')) {
+			$userEntity = $this->Users->newEntity($this->request->data, ['validate' => 'forLogin']);
+			if ($this->request->is('post')) {
 				$errors = $userEntity->errors();
-				if(empty($errors)) {
+				if (empty($errors)) {
 					$email = $userEntity['email'];
 					$password = $userEntity['password'];
 					$user = $this->Users->findByUsernameOrEmail($email, $email)
-								->contain('UserDetails')
-								->first();
+						->contain('UserDetails')
+						->first();
 					$errorMsg = "";
 					$loginValid = false;
-					if(!empty($user) && $this->UserAuth->checkPassword($password, $user['password'])) {
-						if($user['active']) {
-							if($user['email_verified']) {
+					if (!empty($user) && $this->UserAuth->checkPassword($password, $user['password'])) {
+						if ($user['active']) {
+							if ($user['email_verified']) {
 								$loginValid = true;
 							} else {
 								$errorMsg = __('Your email has not been confirmed please verify your email or contact the membership chair', true);
@@ -1197,33 +1271,34 @@ public function employer_membership() {
 						$errorMsg = __('Incorrect Email/Username or Password', true);
 					}
 				}
-				if($this->request->is('ajax')) {
-					if(empty($errors) && $loginValid) {
-						$response = ['error'=>0, 'message'=>'success'];
+				if ($this->request->is('ajax')) {
+					if (empty($errors) && $loginValid) {
+						$response = ['error' => 0, 'message' => 'success'];
 					} else {
-						$response = ['error'=>1, 'message'=>'failure'];
-						if(empty($errorMsg)) {
+						$response = ['error' => 1, 'message' => 'failure'];
+						if (empty($errorMsg)) {
 							$response['data']['Users'] = $errors;
 						} else {
-							if($this->UserAuth->captchaOnBadLogin()) {
+							if ($this->UserAuth->captchaOnBadLogin()) {
 								// need to submit login for captcha validation
-								$response = ['error'=>0, 'message'=>'success'];
+								$response = ['error' => 0, 'message' => 'success'];
 							} else {
-								$response['data']['Users'] = ['email'=>[$errorMsg]];
+								$response['data']['Users'] = ['email' => [$errorMsg]];
 							}
 						}
 					}
-					echo json_encode($response);exit;
+					echo json_encode($response);
+					exit;
 				} else {
-					if(empty($errors) && $loginValid) {
+					if (empty($errors) && $loginValid) {
 						$user = $user->toArray();
 						$this->UserAuth->login($user);
-						if(!empty($userEntity['remember'])) {
+						if (!empty($userEntity['remember'])) {
 							$this->UserAuth->persist('2 weeks');
 						}
 						$this->redirect($this->Auth->redirectUrl());
 					} else {
-						if(!empty($errorMsg)) {
+						if (!empty($errorMsg)) {
 							$this->Flash->error($errorMsg);
 						}
 						$this->request->data['Users']['password'] = '';
@@ -1233,12 +1308,13 @@ public function employer_membership() {
 			$this->set(compact('userEntity'));
 		}
 	}
-	private function add_social_user($socialData) {
+	private function add_social_user($socialData)
+	{
 		$userForLogin = [];
-		if(SITE_REGISTRATION) {
+		if (SITE_REGISTRATION) {
 			$userEntity = $this->Users->newEntity();
 			$userEntity['user_group_id'] = DEFAULT_GROUP_ID;
-			if(!empty($socialData['username'])) {
+			if (!empty($socialData['username'])) {
 				$userEntity['username'] = $this->generateUserName($socialData['username']);
 			} else {
 				$userEntity['username'] = $this->generateUserName($socialData['name']);
@@ -1249,28 +1325,28 @@ public function employer_membership() {
 			$userEntity['last_name'] = $socialData['last_name'];
 			$userEntity['gender'] = $socialData['gender'];
 			$userEntity['active'] = 1;
-			if(!empty($socialData['email'])) {
+			if (!empty($socialData['email'])) {
 				$userEntity['email'] = $socialData['email'];
 				$userEntity['email_verified'] = 1;
 			}
 			$userEntity['ip_address'] = $this->request->clientIp();
-			if(!empty($socialData['picture'])) {
+			if (!empty($socialData['picture'])) {
 				$userEntity['photo'] = $this->updateProfilePic($socialData['picture']);
 			}
-			if($this->Users->save($userEntity, ['validate'=>false])) {
+			if ($this->Users->save($userEntity, ['validate' => false])) {
 				$userId = $userEntity['id'];
-				if(!isset($userEntity['user_detail']['id'])) {
+				if (!isset($userEntity['user_detail']['id'])) {
 					$this->loadModel('Usermgmt.UserDetails');
 					$userDetailEntity = $this->UserDetails->newEntity();
 					$userDetailEntity['user_id'] = $userId;
 					$userDetailEntity['location'] = $socialData['location'];
-					$this->UserDetails->save($userDetailEntity, ['validate'=>false]);
+					$this->UserDetails->save($userDetailEntity, ['validate' => false]);
 				}
-				if(!empty($socialData['id'])) {
+				if (!empty($socialData['id'])) {
 					$this->UserSocials->add_social_account($socialData, $userId);
 				}
 				$userForLogin = $this->Users->getUserById($userId);
-				if(CHANGE_PASSWORD_ON_SOCIAL_REGISTRATION) {
+				if (CHANGE_PASSWORD_ON_SOCIAL_REGISTRATION) {
 					$this->request->session()->write('Auth.SocialChangePassword', true);
 				}
 			}
@@ -1279,18 +1355,19 @@ public function employer_membership() {
 		}
 		return $userForLogin;
 	}
-	private function login_social_user($userForLogin, $socialData) {
-		if(!empty($userForLogin)) {
-			if($userForLogin['active']) {
-				$photoPath = WWW_ROOT."library".DS.IMG_DIR.DS.$userForLogin['photo'];
-				if((empty($userForLogin['photo']) || !file_exists($photoPath)) && !empty($socialData['picture'])) {
+	private function login_social_user($userForLogin, $socialData)
+	{
+		if (!empty($userForLogin)) {
+			if ($userForLogin['active']) {
+				$photoPath = WWW_ROOT . "library" . DS . IMG_DIR . DS . $userForLogin['photo'];
+				if ((empty($userForLogin['photo']) || !file_exists($photoPath)) && !empty($socialData['picture'])) {
 					$userForLogin['photo'] = $this->updateProfilePic($socialData['picture']);
 				}
-				$this->Users->save($userForLogin, ['validate'=>false]);
+				$this->Users->save($userForLogin, ['validate' => false]);
 				$userForLogin = $userForLogin->toArray();
 				$changePassword = $this->request->session()->read('Auth.SocialChangePassword');
 				$this->UserAuth->login($userForLogin);
-				if(!empty($changePassword)) {
+				if (!empty($changePassword)) {
 					$this->request->session()->write('Auth.SocialLogin', true);
 					$this->request->session()->write('Auth.SocialChangePassword', true);
 				}
@@ -1299,35 +1376,36 @@ public function employer_membership() {
 			}
 		}
 	}
-	private function login_facebook() {
+	private function login_facebook()
+	{
 		$this->viewBuilder()->layout('');
 		$fbData = $this->UserConnect->facebook_connect();
-		if(!empty($fbData['redirectURL'])) {
+		if (!empty($fbData['redirectURL'])) {
 			$this->redirect($fbData['redirectURL']);
 		} else {
-			if(!empty($fbData['id'])) {
+			if (!empty($fbData['id'])) {
 				$fbData['type'] = 'FACEBOOK';
 				$this->loadModel('Usermgmt.UserSocials');
 				$userByFbId = $userByFbEmail = $userForLogin = [];
-				$userSocial = $this->UserSocials->find()->where(['UserSocials.type'=>$fbData['type'], 'UserSocials.socialid'=>$fbData['id']])->first();
-				if(!empty($fbData['email'])) {
+				$userSocial = $this->UserSocials->find()->where(['UserSocials.type' => $fbData['type'], 'UserSocials.socialid' => $fbData['id']])->first();
+				if (!empty($fbData['email'])) {
 					$userByFbEmail = $this->Users->getUserByEmail($fbData['email']);
 				}
-				if(!empty($userSocial)) {
+				if (!empty($userSocial)) {
 					$userSocial['access_token'] = $fbData['access_token'];
-					$this->UserSocials->save($userSocial, ['validate'=>false]);
+					$this->UserSocials->save($userSocial, ['validate' => false]);
 					$userByFbId = $this->Users->getUserById($userSocial['user_id']);
-				} else if(!empty($userByFbEmail)) {
+				} else if (!empty($userByFbEmail)) {
 					$this->UserSocials->add_social_account($fbData, $userByFbEmail['id']);
 				}
-				if(!empty($userByFbId) && !empty($userByFbEmail)) {
+				if (!empty($userByFbId) && !empty($userByFbEmail)) {
 					$userForLogin = $userByFbId;
-				} else if(!empty($userByFbId)) {
-					if(empty($userByFbId['email']) && !empty($fbData['email'])) {
+				} else if (!empty($userByFbId)) {
+					if (empty($userByFbId['email']) && !empty($fbData['email'])) {
 						$userByFbId['email'] = $fbData['email'];
 					}
 					$userForLogin = $userByFbId;
-				} else if(!empty($userByFbEmail)) {
+				} else if (!empty($userByFbEmail)) {
 					$userForLogin = $userByFbEmail;
 				} else {
 					$userForLogin = $this->add_social_user($fbData);
@@ -1336,59 +1414,61 @@ public function employer_membership() {
 			}
 		}
 	}
-	private function login_twitter() {
+	private function login_twitter()
+	{
 		$this->viewBuilder()->layout('');
 		$twtData = $this->UserConnect->twitter_connect();
-		if(!empty($twtData['redirectURL'])) {
+		if (!empty($twtData['redirectURL'])) {
 			$this->redirect($twtData['redirectURL']);
 		} else {
-			if(!empty($twtData['id'])) {
+			if (!empty($twtData['id'])) {
 				$twtData['type'] = 'TWITTER';
 				$this->loadModel('Usermgmt.UserSocials');
 				$userForLogin = [];
-				$userSocial = $this->UserSocials->find()->where(['UserSocials.type'=>$twtData['type'], 'UserSocials.socialid'=>$twtData['id']])->first();
-				if(!empty($userSocial)) {
+				$userSocial = $this->UserSocials->find()->where(['UserSocials.type' => $twtData['type'], 'UserSocials.socialid' => $twtData['id']])->first();
+				if (!empty($userSocial)) {
 					$userSocial['access_token'] = $twtData['access_token'];
 					$userSocial['access_secret'] = $twtData['access_secret'];
-					$this->UserSocials->save($userSocial, ['validate'=>false]);
+					$this->UserSocials->save($userSocial, ['validate' => false]);
 					$userForLogin = $this->Users->getUserById($userSocial['user_id']);
 				}
-				if(empty($userForLogin)) {
+				if (empty($userForLogin)) {
 					$userForLogin = $this->add_social_user($twtData);
 				}
 				$this->login_social_user($userForLogin, $twtData);
 			}
 		}
 	}
-	private function login_linkedin() {
+	private function login_linkedin()
+	{
 		$this->viewBuilder()->layout('');
 		$ldnData = $this->UserConnect->linkedin_connect();
-		if(!empty($ldnData['redirectURL'])) {
+		if (!empty($ldnData['redirectURL'])) {
 			$this->redirect($ldnData['redirectURL']);
 		} else {
-			if(!empty($ldnData['id'])) {
+			if (!empty($ldnData['id'])) {
 				$ldnData['type'] = 'LINKEDIN';
 				$this->loadModel('Usermgmt.UserSocials');
 				$userByLdnId = $userByLdnEmail = $userForLogin = [];
-				$userSocial = $this->UserSocials->find()->where(['UserSocials.type'=>$ldnData['type'], 'UserSocials.socialid'=>$ldnData['id']])->first();
-				if(!empty($ldnData['email'])) {
+				$userSocial = $this->UserSocials->find()->where(['UserSocials.type' => $ldnData['type'], 'UserSocials.socialid' => $ldnData['id']])->first();
+				if (!empty($ldnData['email'])) {
 					$userByLdnEmail = $this->Users->getUserByEmail($ldnData['email']);
 				}
-				if(!empty($userSocial)) {
+				if (!empty($userSocial)) {
 					$userSocial['access_token'] = $ldnData['access_token'];
-					$this->UserSocials->save($userSocial, ['validate'=>false]);
+					$this->UserSocials->save($userSocial, ['validate' => false]);
 					$userByLdnId = $this->Users->getUserById($userSocial['user_id']);
-				} else if(!empty($userByLdnEmail)) {
+				} else if (!empty($userByLdnEmail)) {
 					$this->UserSocials->add_social_account($ldnData, $userByLdnEmail['id']);
 				}
-				if(!empty($userByLdnId) && !empty($userByLdnEmail)) {
+				if (!empty($userByLdnId) && !empty($userByLdnEmail)) {
 					$userForLogin = $userByLdnId;
-				} else if(!empty($userByLdnId)) {
-					if(empty($userByLdnId['email']) && !empty($ldnData['email'])) {
+				} else if (!empty($userByLdnId)) {
+					if (empty($userByLdnId['email']) && !empty($ldnData['email'])) {
 						$userByLdnId['email'] = $ldnData['email'];
 					}
 					$userForLogin = $userByLdnId;
-				} else if(!empty($userByLdnEmail)) {
+				} else if (!empty($userByLdnEmail)) {
 					$userForLogin = $userByLdnEmail;
 				} else {
 					$userForLogin = $this->add_social_user($ldnData);
@@ -1397,35 +1477,36 @@ public function employer_membership() {
 			}
 		}
 	}
-	private function login_foursquare() {
+	private function login_foursquare()
+	{
 		$this->viewBuilder()->layout('');
 		$fsData = $this->UserConnect->foursquare_connect();
-		if(!empty($fsData['redirectURL'])) {
+		if (!empty($fsData['redirectURL'])) {
 			$this->redirect($fsData['redirectURL']);
 		} else {
-			if(!empty($fsData['id'])) {
+			if (!empty($fsData['id'])) {
 				$fsData['type'] = 'FOURSQUARE';
 				$this->loadModel('Usermgmt.UserSocials');
 				$userByFsId = $userByFsEmail = $userForLogin = [];
-				$userSocial = $this->UserSocials->find()->where(['UserSocials.type'=>$fsData['type'], 'UserSocials.socialid'=>$fsData['id']])->first();
-				if(!empty($fsData['email'])) {
+				$userSocial = $this->UserSocials->find()->where(['UserSocials.type' => $fsData['type'], 'UserSocials.socialid' => $fsData['id']])->first();
+				if (!empty($fsData['email'])) {
 					$userByFsEmail = $this->Users->getUserByEmail($fsData['email']);
 				}
-				if(!empty($userSocial)) {
+				if (!empty($userSocial)) {
 					$userSocial['access_token'] = $fsData['access_token'];
-					$this->UserSocials->save($userSocial, ['validate'=>false]);
+					$this->UserSocials->save($userSocial, ['validate' => false]);
 					$userByFsId = $this->Users->getUserById($userSocial['user_id']);
-				} else if(!empty($userByFsEmail)) {
+				} else if (!empty($userByFsEmail)) {
 					$this->UserSocials->add_social_account($fsData, $userByFsEmail['id']);
 				}
-				if(!empty($userByFsId) && !empty($userByFsEmail)) {
+				if (!empty($userByFsId) && !empty($userByFsEmail)) {
 					$userForLogin = $userByFsId;
-				} else if(!empty($userByFsId)) {
-					if(empty($userByFsId['email']) && !empty($fsData['email'])) {
+				} else if (!empty($userByFsId)) {
+					if (empty($userByFsId['email']) && !empty($fsData['email'])) {
 						$userByFsId['email'] = $fsData['email'];
 					}
 					$userForLogin = $userByFsId;
-				} else if(!empty($userByFsEmail)) {
+				} else if (!empty($userByFsEmail)) {
 					$userForLogin = $userByFsEmail;
 				} else {
 					$userForLogin = $this->add_social_user($fsData);
@@ -1434,30 +1515,32 @@ public function employer_membership() {
 			}
 		}
 	}
-	private function login_gmail() {
+	private function login_gmail()
+	{
 		$this->viewBuilder()->layout('');
 		$gmailData = $this->UserConnect->gmail_connect();
-		if(!empty($gmailData['redirectURL'])) {
+		if (!empty($gmailData['redirectURL'])) {
 			$this->redirect($gmailData['redirectURL']);
 		} else {
-			if(!empty($gmailData['email'])) {
+			if (!empty($gmailData['email'])) {
 				$userForLogin = $this->Users->getUserByEmail($gmailData['email']);
-				if(empty($userForLogin)) {
+				if (empty($userForLogin)) {
 					$userForLogin = $this->add_social_user($gmailData);
 				}
 				$this->login_social_user($userForLogin, $gmailData);
 			}
 		}
 	}
-	private function login_yahoo() {
+	private function login_yahoo()
+	{
 		$this->viewBuilder()->layout('');
 		$yahooData = $this->UserConnect->yahoo_connect();
-		if(!empty($yahooData['redirectURL'])) {
+		if (!empty($yahooData['redirectURL'])) {
 			$this->redirect($yahooData['redirectURL']);
 		} else {
-			if(!empty($yahooData['email'])) {
+			if (!empty($yahooData['email'])) {
 				$userForLogin = $this->Users->getUserByEmail($yahooData['email']);
-				if(empty($userForLogin)) {
+				if (empty($userForLogin)) {
 					$userForLogin = $this->add_social_user($yahooData);
 				}
 				$this->login_social_user($userForLogin, $yahooData);
@@ -1471,9 +1554,10 @@ public function employer_membership() {
 	 * @param boolean $msg true for flash message on logout
 	 * @return void
 	 */
-	public function logout($msg=true) {
+	public function logout($msg = true)
+	{
 		$this->UserAuth->logout();
-		if($msg) {
+		if ($msg) {
 			$this->Flash->success(__('You are successfully signed out'));
 		}
 	}
@@ -1484,13 +1568,14 @@ public function employer_membership() {
 	 * @param string $name user's name to generate username
 	 * @return void
 	 */
-	private function generateUserName($name=null) {
+	private function generateUserName($name = null)
+	{
 		$name = str_replace(' ', '', strtolower($name));
 		$username = '';
-		if(!empty($name)) {
+		if (!empty($name)) {
 			$username = $name;
-			while($this->Users->exists(['Users.username'=>$username]) || $this->Users->isBanned2($username)) {
-				$username = $name.'_'.rand(1000, 9999);
+			while ($this->Users->exists(['Users.username' => $username]) || $this->Users->isBanned2($username)) {
+				$username = $name . '_' . rand(1000, 9999);
 			}
 		}
 		return $username;
@@ -1502,14 +1587,15 @@ public function employer_membership() {
 	 * @param url $file_location url of pic
 	 * @return void
 	 */
-	private function updateProfilePic($file_location) {
-		$fullpath = WWW_ROOT."library".DS.IMG_DIR;
-		if(!is_dir($fullpath)) {
+	private function updateProfilePic($file_location)
+	{
+		$fullpath = WWW_ROOT . "library" . DS . IMG_DIR;
+		if (!is_dir($fullpath)) {
 			mkdir($fullpath, 0777, true);
 		}
 		$imgContent = file_get_contents($file_location);
-		$photo = time().mt_rand().".jpg";
-		$tempfile = $fullpath.DS.$photo;
+		$photo = time() . mt_rand() . ".jpg";
+		$tempfile = $fullpath . DS . $photo;
 		$fp = fopen($tempfile, "w");
 		fwrite($fp, $imgContent);
 		fclose($fp);
@@ -1521,34 +1607,36 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function register() {
+	public function register()
+	{
 		$userId = $this->UserAuth->getUserId();
-		if($userId) {
-			$this->redirect(['action'=>'dashboard']);
+		if ($userId) {
+			$this->redirect(['action' => 'dashboard']);
 		}
-		if(SITE_REGISTRATION) {
+		if (SITE_REGISTRATION) {
 			$this->loadModel('Usermgmt.UserGroups');
 			$userGroups = $this->UserGroups->getGroupsForRegistration();
-			if($this->request->is('post') && $this->UserAuth->canUseRecaptha('registration') && !$this->request->is('ajax')) {
+			if ($this->request->is('post') && $this->UserAuth->canUseRecaptha('registration') && !$this->request->is('ajax')) {
 				$this->request->data['Users']['captcha'] = (isset($this->request->data['g-recaptcha-response'])) ? $this->request->data['g-recaptcha-response'] : "";
 			}
-			$userEntity = $this->Users->newEntity($this->request->data, ['validate'=>'forRegister']);
-			if($this->request->is('post')) {
+			$userEntity = $this->Users->newEntity($this->request->data, ['validate' => 'forRegister']);
+			if ($this->request->is('post')) {
 				$errors = $userEntity->errors();
-				if($this->request->is('ajax')) {
-					if(empty($errors)) {
-						$response = ['error'=>0, 'message'=>'success'];
+				if ($this->request->is('ajax')) {
+					if (empty($errors)) {
+						$response = ['error' => 0, 'message' => 'success'];
 					} else {
-						$response = ['error'=>1, 'message'=>'failure'];
+						$response = ['error' => 1, 'message' => 'failure'];
 						$response['data']['Users'] = $errors;
 					}
-					echo json_encode($response);exit;
+					echo json_encode($response);
+					exit;
 				} else {
-					if(empty($errors)) {
-						if(!isset($this->request->data['Users']['user_group_id'])) {
+					if (empty($errors)) {
+						if (!isset($this->request->data['Users']['user_group_id'])) {
 							$userEntity['user_group_id'] = DEFAULT_GROUP_ID;
 						}
-						if(!EMAIL_VERIFICATION) {
+						if (!EMAIL_VERIFICATION) {
 							$userEntity['email_verified'] = 1;
 						}
 						$userEntity['active'] = 1;
@@ -1556,26 +1644,26 @@ public function employer_membership() {
 						$userEntity['password'] = $this->UserAuth->makeHashedPassword($userEntity['password']);
 						$userEntity['first_name'] = $userEntity['first_name'];
 						$userEntity['last_name'] = $userEntity['last_name'];
-						if($this->Users->save($userEntity, ['validate'=>false])) {
+						if ($this->Users->save($userEntity, ['validate' => false])) {
 							$userId = $userEntity['id'];
 							$this->loadModel('Usermgmt.UserDetails');
 							$userDetailEntity = $this->UserDetails->newEntity();
 							$userDetailEntity['user_id'] = $userId;
-							$this->UserDetails->save($userDetailEntity, ['validate'=>false]);
-							if(EMAIL_VERIFICATION) {
+							$this->UserDetails->save($userDetailEntity, ['validate' => false]);
+							if (EMAIL_VERIFICATION) {
 								$this->Users->sendVerificationMail($userEntity);
 							}
-							if(SEND_REGISTRATION_MAIL) {
+							if (SEND_REGISTRATION_MAIL) {
 								$this->Users->sendRegistrationMail($userEntity);
 							}
-							if(isset($userEntity['active']) && $userEntity['active'] && !EMAIL_VERIFICATION) {
+							if (isset($userEntity['active']) && $userEntity['active'] && !EMAIL_VERIFICATION) {
 								$user = $this->Users->getUserById($userId);
 								$user = $user->toArray();
 								$this->UserAuth->login($user);
 								$this->redirect($this->Auth->redirectUrl());
 							} else {
 								$this->Flash->success(__('We have sent an email to you, please confirm your registration'));
-								$this->redirect(['action'=>'login']);
+								$this->redirect(['action' => 'login']);
 							}
 						} else {
 							$this->Flash->error(__('Unable to register user, please try again'));
@@ -1586,7 +1674,7 @@ public function employer_membership() {
 			$this->set(compact('userGroups', 'userEntity'));
 		} else {
 			$this->Flash->info(__('Sorry new registration is currently disabled, please try again later'));
-			$this->redirect(['action'=>'login']);
+			$this->redirect(['action' => 'login']);
 		}
 	}
 	/**
@@ -1595,16 +1683,17 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function myprofile() {
+	public function myprofile()
+	{
 		$userId = $this->UserAuth->getUserId();
 		$user = $this->Users->getUserById($userId);
-		if(!empty($user)) {
+		if (!empty($user)) {
 			$this->loadModel('Usermgmt.UserGroups');
 			$user['user_group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
 			$this->set(compact('user'));
 		} else {
 			$this->Flash->info(__('Profile details not found'));
-			$this->redirect(['action'=>'dashboard']);
+			$this->redirect(['action' => 'dashboard']);
 		}
 	}
 	/**
@@ -1613,74 +1702,75 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function editProfile() {
+	public function editProfile()
+	{
 		$userId = $this->UserAuth->getUserId();
-		if(!empty($userId)) {
+		if (!empty($userId)) {
 			$userEntity = $this->Users->getUserById($userId);
-			if(!empty($userEntity)) {
+			if (!empty($userEntity)) {
 				$userOldEmail = $userEntity['email'];
 				$this->loadModel('Usermgmt.UserDetails');
 
-		$genders = $this->Users->getGenders(false);
-		$otypes = $this->Users->getOtypes(false);
-		$ostatus = $this->Users->getOstatus(false);
-		$mstatus = $this->Users->getMstatus(false);
-		$this->set(compact('userGroups', 'userEntity', 'genders','otypes','ostatus','mstatus'));
+				$genders = $this->Users->getGenders(false);
+				$otypes = $this->Users->getOtypes(false);
+				$ostatus = $this->Users->getOstatus(false);
+				$mstatus = $this->Users->getMstatus(false);
+				$this->set(compact('userGroups', 'userEntity', 'genders', 'otypes', 'ostatus', 'mstatus'));
 
 
 
-				if(!ALLOW_CHANGE_USERNAME && !empty($userEntity['username'])) {
+				if (!ALLOW_CHANGE_USERNAME && !empty($userEntity['username'])) {
 					unset($this->request->data['Users']['username']);
 				}
-				$this->Users->patchEntity($userEntity, $this->request->data, ['validate'=>'forEditProfile', 'associated'=>['UserDetails'=>['validate'=>'forEditProfile']]]);
-				if($this->request->is(['post', 'put'])) {
+				$this->Users->patchEntity($userEntity, $this->request->data, ['validate' => 'forEditProfile', 'associated' => ['UserDetails' => ['validate' => 'forEditProfile']]]);
+				if ($this->request->is(['post', 'put'])) {
 					$errors = $userEntity->errors();
-					if($this->request->is('ajax')) {
-						if(empty($errors)) {
-							$response = ['error'=>0, 'message'=>'success'];
+					if ($this->request->is('ajax')) {
+						if (empty($errors)) {
+							$response = ['error' => 0, 'message' => 'success'];
 						} else {
-							$response = ['error'=>1, 'message'=>'failure'];
+							$response = ['error' => 1, 'message' => 'failure'];
 							$response['data']['Users'] = $errors;
 						}
-						echo json_encode($response);exit;
+						echo json_encode($response);
+						exit;
 					} else {
-						if(empty($errors)) {
-							if(!empty($this->request->data['Users']['photo_file']['tmp_name']) && is_uploaded_file($this->request->data['Users']['photo_file']['tmp_name']))
-							{
+						if (empty($errors)) {
+							if (!empty($this->request->data['Users']['photo_file']['tmp_name']) && is_uploaded_file($this->request->data['Users']['photo_file']['tmp_name'])) {
 								$path_info = pathinfo($this->request->data['Users']['photo_file']['name']);
 								chmod($this->request->data['Users']['photo_file']['tmp_name'], 0644);
-								$photo = time().mt_rand().".".$path_info['extension'];
-								$fullpath = WWW_ROOT."library".DS.IMG_DIR;
-								if(!is_dir($fullpath)) {
+								$photo = time() . mt_rand() . "." . $path_info['extension'];
+								$fullpath = WWW_ROOT . "library" . DS . IMG_DIR;
+								if (!is_dir($fullpath)) {
 									mkdir($fullpath, 0777, true);
 								}
-								move_uploaded_file($this->request->data['Users']['photo_file']['tmp_name'], $fullpath.DS.$photo);
+								move_uploaded_file($this->request->data['Users']['photo_file']['tmp_name'], $fullpath . DS . $photo);
 								$existing_photo = $userEntity['photo'];
 								$userEntity['photo'] = $photo;
-								if(!empty($existing_photo) && file_exists($fullpath.DS.$existing_photo)) {
-									unlink($fullpath.DS.$existing_photo);
+								if (!empty($existing_photo) && file_exists($fullpath . DS . $existing_photo)) {
+									unlink($fullpath . DS . $existing_photo);
 								}
 							}
-							if(!$this->UserAuth->isAdmin() && $userOldEmail != $userEntity['email']) {
+							if (!$this->UserAuth->isAdmin() && $userOldEmail != $userEntity['email']) {
 								$userEntity['email_verified'] = 0;
 								$this->Users->sendVerificationMail($userEntity);
 								$this->loadModel('Usermgmt.LoginTokens');
-								$this->LoginTokens->deleteAll(['user_id'=>$userId]);
+								$this->LoginTokens->deleteAll(['user_id' => $userId]);
 							}
 							unset($userEntity['user_group_id']);
-							if(empty($userEntity['ip_address'])) {
+							if (empty($userEntity['ip_address'])) {
 								$userEntity['ip_address'] = $this->request->clientIp();
 							}
-							if(!empty($this->request->data['Users']['bday'])) {
+							if (!empty($this->request->data['Users']['bday'])) {
 								$userEntity['bday'] = new Time($this->request->data['Users']['bday']);
 							}
-							$this->Users->save($userEntity, ['validate'=>false]);
+							$this->Users->save($userEntity, ['validate' => false]);
 							$this->Flash->success(__('Your profile has been successfully updated'));
-							$this->redirect(['action'=>'myprofile']);
+							$this->redirect(['action' => 'myprofile']);
 						}
 					}
 				} else {
-					if(!empty($userEntity['bday'])) {
+					if (!empty($userEntity['bday'])) {
 						$userEntity['bday'] = $userEntity['bday']->format('Y-m-d');
 					}
 				}
@@ -1688,11 +1778,11 @@ public function employer_membership() {
 				$this->set(compact('userEntity', 'genders'));
 			} else {
 				$this->Flash->error(__('Invalid User Id'));
-				$this->redirect(['action'=>'myprofile']);
+				$this->redirect(['action' => 'myprofile']);
 			}
 		} else {
 			$this->Flash->error(__('Invalid User Id'));
-			$this->redirect(['action'=>'myprofile']);
+			$this->redirect(['action' => 'myprofile']);
 		}
 	}
 	/**
@@ -1701,31 +1791,32 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function changePassword() {
+	public function changePassword()
+	{
 		$userId = $this->UserAuth->getUserId();
-		if($userId) {
-			$userEntity = $this->Users->newEntity($this->request->data, ['validate'=>'forChangePassword']);
-			if($this->request->is('post')) {
+		if ($userId) {
+			$userEntity = $this->Users->newEntity($this->request->data, ['validate' => 'forChangePassword']);
+			if ($this->request->is('post')) {
 				$errors = $userEntity->errors();
-				if(empty($errors)) {
+				if (empty($errors)) {
 					$userEntity['id'] = $userId;
 					$userEntity['password'] = $this->UserAuth->makeHashedPassword($userEntity['password']);
-					$this->Users->save($userEntity, ['validate'=>false]);
+					$this->Users->save($userEntity, ['validate' => false]);
 					$this->loadModel('Usermgmt.LoginTokens');
-					$this->LoginTokens->deleteAll(['user_id'=>$userId]);
-					if(SEND_PASSWORD_CHANGE_MAIL) {
-						$userEntity = $this->Users->find()->where(['Users.id'=>$userId])->first();
+					$this->LoginTokens->deleteAll(['user_id' => $userId]);
+					if (SEND_PASSWORD_CHANGE_MAIL) {
+						$userEntity = $this->Users->find()->where(['Users.id' => $userId])->first();
 						$this->Users->sendChangePasswordMail($userEntity);
 					}
 					$this->request->session()->delete('Auth.SocialChangePassword');
 					$this->Flash->success(__('Password changed successfully'));
-					$this->redirect(['action'=>'dashboard']);
+					$this->redirect(['action' => 'dashboard']);
 				}
 			}
 			$this->set(compact('userEntity'));
 		} else {
 			$this->Flash->error(__('Invalid User Id'));
-			$this->redirect(['action'=>'dashboard']);
+			$this->redirect(['action' => 'dashboard']);
 		}
 	}
 	/**
@@ -1734,19 +1825,20 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function deleteAccount() {
+	public function deleteAccount()
+	{
 		$userId = $this->UserAuth->getUserId();
-		if(!empty($userId)) {
-			if($this->request->is('post')) {
-				if(ALLOW_DELETE_ACCOUNT && $userId != 1) {
-					$user = $this->Users->find()->where(['Users.id'=>$userId])->first();
-					if($this->Users->delete($user)) {
+		if (!empty($userId)) {
+			if ($this->request->is('post')) {
+				if (ALLOW_DELETE_ACCOUNT && $userId != 1) {
+					$user = $this->Users->find()->where(['Users.id' => $userId])->first();
+					if ($this->Users->delete($user)) {
 						$this->loadModel('UserDetails');
 						$this->loadModel('LoginTokens');
 						$this->loadModel('UserActivities');
-						$this->UserDetails->deleteAll(['user_id'=>$userId]);
-						$this->LoginTokens->deleteAll(['user_id'=>$userId]);
-						$this->UserActivities->updateAll(['deleted'=>1], ['user_id'=>$userId]);
+						$this->UserDetails->deleteAll(['user_id' => $userId]);
+						$this->LoginTokens->deleteAll(['user_id' => $userId]);
+						$this->UserActivities->updateAll(['deleted' => 1], ['user_id' => $userId]);
 						$this->Flash->success(__('Your account is successfully deleted'));
 						$this->logout(false);
 					}
@@ -1755,7 +1847,7 @@ public function employer_membership() {
 				}
 			}
 		}
-		$this->redirect(['action'=>'dashboard']);
+		$this->redirect(['action' => 'dashboard']);
 	}
 	/**
 	 * It is used to reset password, this function sends email with link to reset the password
@@ -1763,24 +1855,25 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function forgotPassword() {
-		if($this->request->is('post') && $this->UserAuth->canUseRecaptha('forgotPassword') && !$this->request->is('ajax')) {
+	public function forgotPassword()
+	{
+		if ($this->request->is('post') && $this->UserAuth->canUseRecaptha('forgotPassword') && !$this->request->is('ajax')) {
 			$this->request->data['Users']['captcha'] = (isset($this->request->data['g-recaptcha-response'])) ? $this->request->data['g-recaptcha-response'] : "";
 		}
-		$userEntity = $this->Users->newEntity($this->request->data, ['validate'=>'forForgotPassword']);
-		if($this->request->is('post')) {
+		$userEntity = $this->Users->newEntity($this->request->data, ['validate' => 'forForgotPassword']);
+		if ($this->request->is('post')) {
 			$errors = $userEntity->errors();
-			if(empty($errors)) {
+			if (empty($errors)) {
 				$email = $userEntity['email'];
 				$user = $this->Users->findByUsernameOrEmail($email, $email)->first();
-				if(!empty($user)) {
-					if($user['email_verified'] == 1) {
+				if (!empty($user)) {
+					if ($user['email_verified'] == 1) {
 						$this->Users->sendForgotPasswordMail($user);
 						$this->Flash->success(__('We have sent an email to you, please click on the link in your email to reset your password'));
 					} else {
 						$this->Flash->info(__('Your registration has not been confirmed yet please verify your email address before reset password'));
 					}
-					$this->redirect(['action'=>'login']);
+					$this->redirect(['action' => 'login']);
 				} else {
 					$this->Flash->error(__('Incorrect Email/Username'));
 				}
@@ -1794,24 +1887,25 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function activatePassword() {
-		$userEntity = $this->Users->newEntity($this->request->data, ['validate'=>'forActivatePassword']);
+	public function activatePassword()
+	{
+		$userEntity = $this->Users->newEntity($this->request->data, ['validate' => 'forActivatePassword']);
 		$ident = $activate = '';
-		if(!empty($_GET['ident']) && !empty($_GET['activate'])) {
-			if($this->request->is('post')) {
+		if (!empty($_GET['ident']) && !empty($_GET['activate'])) {
+			if ($this->request->is('post')) {
 				$errors = $userEntity->errors();
-				if(empty($errors)) {
+				if (empty($errors)) {
 					$userId = $_GET['ident'];
 					$activateKey = $_GET['activate'];
-					$user = $this->Users->find()->where(['Users.id'=>$userId])->first();
-					if(!empty($user)) {
-						$thekey = $this->Users->getActivationKey($user['email'].$user['password']);
-						if($thekey === $activateKey) {
+					$user = $this->Users->find()->where(['Users.id' => $userId])->first();
+					if (!empty($user)) {
+						$thekey = $this->Users->getActivationKey($user['email'] . $user['password']);
+						if ($thekey === $activateKey) {
 							$userEntity['id'] = $userId;
 							$userEntity['password'] = $this->UserAuth->makeHashedPassword($userEntity['password']);
-							$this->Users->save($userEntity, ['validate'=>false]);
+							$this->Users->save($userEntity, ['validate' => false]);
 							$this->Flash->success(__('Your password has been reset successfully'));
-							$this->redirect(['action'=>'login']);
+							$this->redirect(['action' => 'login']);
 						} else {
 							$this->Flash->info(__('Something went wrong, please send password reset link again'));
 						}
@@ -1831,24 +1925,25 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function emailVerification() {
-		if($this->request->is('post') && $this->UserAuth->canUseRecaptha('emailVerification') && !$this->request->is('ajax')) {
+	public function emailVerification()
+	{
+		if ($this->request->is('post') && $this->UserAuth->canUseRecaptha('emailVerification') && !$this->request->is('ajax')) {
 			$this->request->data['Users']['captcha'] = (isset($this->request->data['g-recaptcha-response'])) ? $this->request->data['g-recaptcha-response'] : "";
 		}
-		$userEntity = $this->Users->newEntity($this->request->data, ['validate'=>'forEmailVerification']);
-		if($this->request->is('post')) {
+		$userEntity = $this->Users->newEntity($this->request->data, ['validate' => 'forEmailVerification']);
+		if ($this->request->is('post')) {
 			$errors = $userEntity->errors();
-			if(empty($errors)) {
+			if (empty($errors)) {
 				$email = $userEntity['email'];
 				$user = $this->Users->findByUsernameOrEmail($email, $email)->first();
-				if(!empty($user)) {
-					if($user['email_verified'] == 0) {
+				if (!empty($user)) {
+					if ($user['email_verified'] == 0) {
 						$this->Users->sendVerificationMail($user);
 						$this->Flash->success(__('We have sent an email to you, please confirm your email address'));
 					} else {
 						$this->Flash->success(__('Your email is already verified'));
 					}
-					$this->redirect(['action'=>'login']);
+					$this->redirect(['action' => 'login']);
 				} else {
 					$this->Flash->error(__('Incorrect Email/Username'));
 				}
@@ -1862,19 +1957,20 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function userVerification() {
-		if(isset($_GET['ident']) && isset($_GET['activate'])) {
+	public function userVerification()
+	{
+		if (isset($_GET['ident']) && isset($_GET['activate'])) {
 			$userId = $_GET['ident'];
 			$activateKey = $_GET['activate'];
-			$user = $this->Users->find()->where(['Users.id'=>$userId])->first();
-			if(!empty($user)) {
-				if(!$user['email_verified']) {
+			$user = $this->Users->find()->where(['Users.id' => $userId])->first();
+			if (!empty($user)) {
+				if (!$user['email_verified']) {
 					$password = $user['password'];
-					$theKey = $this->Users->getActivationKey($user['email'].$password);
-					if($activateKey === $theKey) {
+					$theKey = $this->Users->getActivationKey($user['email'] . $password);
+					if ($activateKey === $theKey) {
 						$user['email_verified'] = 1;
-						$this->Users->patchEntity($user, ['validate'=>false]);
-						$result = $this->Users->save($user, ['validate'=>false]);
+						$this->Users->patchEntity($user, ['validate' => false]);
+						$result = $this->Users->save($user, ['validate' => false]);
 						$this->Flash->success(__('Thank you, your email has been verified successfully'));
 					}
 				} else {
@@ -1886,7 +1982,7 @@ public function employer_membership() {
 		} else {
 			$this->Flash->info(__('Sorry something went wrong, please click on the link again'));
 		}
-		$this->redirect(['action'=>'login']);
+		$this->redirect(['action' => 'login']);
 	}
 	/**
 	 *  It id used to delete cache of cakephp on production
@@ -1894,31 +1990,32 @@ public function employer_membership() {
 	 * @access public
 	 * @return void
 	 */
-	public function deleteCache() {
+	public function deleteCache()
+	{
 		Configure::write('debug', 1);
 		$iterator = new \RecursiveDirectoryIterator(CACHE);
 		$success = true;
-		foreach(new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::CHILD_FIRST) as $file) {
+		foreach (new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::CHILD_FIRST) as $file) {
 			$path_info = pathinfo($file);
-			if(!in_array($path_info['basename'], ['.svn', '.', '..'])) {
-				if($path_info['dirname'] == CACHE.'models') {
-					if(!unlink($file->getPathname())) {
+			if (!in_array($path_info['basename'], ['.svn', '.', '..'])) {
+				if ($path_info['dirname'] == CACHE . 'models') {
+					if (!unlink($file->getPathname())) {
 						$success = false;
 					}
 				}
-				if($path_info['dirname'] == CACHE.'persistent') {
-					if(!unlink($file->getPathname())) {
+				if ($path_info['dirname'] == CACHE . 'persistent') {
+					if (!unlink($file->getPathname())) {
 						$success = false;
 					}
 				}
-				if($path_info['dirname'] == CACHE.'views') {
-					if(!unlink($file->getPathname())) {
+				if ($path_info['dirname'] == CACHE . 'views') {
+					if (!unlink($file->getPathname())) {
 						$success = false;
 					}
 				}
-				if($path_info['dirname'] == TMP.'cache') {
-					if(!is_dir($file->getPathname()) && strpos($path_info['basename'], 'UserMgmt_') !== false) {
-						if(!unlink($file->getPathname())) {
+				if ($path_info['dirname'] == TMP . 'cache') {
+					if (!is_dir($file->getPathname()) && strpos($path_info['basename'], 'UserMgmt_') !== false) {
+						if (!unlink($file->getPathname())) {
 							$success = false;
 						}
 					}
@@ -1927,12 +2024,12 @@ public function employer_membership() {
 		}
 		$this->loadModel('Usermgmt.UserSettings');
 		$expression = new QueryExpression('value = value + 1');
-		$this->UserSettings->updateAll([$expression], ['name'=>'qrdn']);
+		$this->UserSettings->updateAll([$expression], ['name' => 'qrdn']);
 		$this->loadModel('Usermgmt.UserActivities');
-		$this->UserActivities->deleteAll(['1'=>'1']);
-		if($success) {
+		$this->UserActivities->deleteAll(['1' => '1']);
+		if ($success) {
 			$this->Flash->success(__('Cache has been deleted successfully'));
-			$this->redirect(['action'=>'dashboard']);
+			$this->redirect(['action' => 'dashboard']);
 		} else {
 			echo __('Cache was not deleted, please delete it manually.');
 			exit;

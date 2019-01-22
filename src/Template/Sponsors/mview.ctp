@@ -35,69 +35,62 @@
 <div class="panel panel-success">
     <div class="panel-heading">
         <span class="panel-title" style="font-size: 22px;">
-            <?= __($sponsorships->name) ?>
+            <?= "Sponsorship for " . $user->first_name . " " . $user->last_name ?>
             <div class="panel-title-right">
-                <?= $this->Html->link(__('Return Home'), ['plugin' => 'Usermgmt', 'controller' => 'users', 'action' => 'dashboard'], ['class' => 'btn btn-primary btn-sm']) ?>
+                <?= $this->Html->link(__('Return to Sponsorships'), ['plugin' => false, 'action' => 'index'], ['class' => 'btn btn-primary btn-sm']) ?>
 
             </div>
         </span>
     </div>
     <div class="panel-body">
-        <?= $this->Form->create($sponsor) ?>
+        <div style="display:none;">
+            <?= $this->Form->create($sponsor) ?>
 
-        <?php
-        echo $this->Form->hidden('user_id', ['value' => $userId]);
-        echo $this->Form->input('sponsored_item_id', ['options' => $sponsoredItems]);
-        echo $this->Form->hidden('sponsorship_id', ['value' => $sponsorships->id]);
-        echo $this->Form->hidden('processed');
-        ?>
-        <?= $this->Form->button(__('Submit')) ?>
-        <?= $this->Form->end() ?>
-        <hr />
+            <?php
+            echo $this->Form->hidden('user_id', ['value' => $id2]);
+            echo $this->Form->input('sponsored_item_id', ['options' => $sponsoredItems]);
+            echo $this->Form->hidden('sponsorship_id', ['value' => $id]);
+            echo $this->Form->hidden('processed');
+            ?>
+            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->end() ?>
+            <hr />
+        </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <?php if (!empty($sponsorship)) : ?>
-                    <table class="table table-bordered table-condensed table-hover">
-                        <?php $previous = ''; ?>
-                        <?php foreach ($sponsorship as $sponsoredItems) : ?>
-
-                        <?php if ($previous == $sponsoredItems->sponsored_level->name) {
-                            echo '<tr>';
-                        } else { ?>
-                        <tr>
-                            <td colspan="5" style="background-color:grey; color:white;">
-                                <strong>
-                                    <?= h($sponsoredItems->sponsored_level->name) ?></strong>
-                            </td>
-                        </tr>
-                        <?php 
-                    } ?>
-                        <td>
-                            <?= h($sponsoredItems->name) ?>&nbsp;&nbsp;
-                            <?php if ($sponsoredItems->amount == 0) {
-                                echo '&nbsp;';
-                            } else {
-                                echo $this->Number->currency($sponsoredItems->amount, 'USD');
-                            } ?>
-                            <br />
-                            <?= $sponsoredItems->description ?><br />
-                            <?php if ($sponsoredItems->unavailable == 1) {
-                                                                                echo "<span style='padding-left:20px; color:grey;' >unavailable</span>";
-                                                                            } ?>
-
-                        </td>
-                        </tr>
-
-                        <?php $previous = $sponsoredItems->sponsored_level->name;
-                        endforeach; ?>
-                    </table>
-                    <?php endif; ?>
-
-                </div>
                 <div class="col-md-4">
-
-                    <h3><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Cart</h3>
+                    <table class=" table-sm table-borderless table-condensed">
+                        <!--Table body-->
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <?= $user->first_name . " " . $user->last_name ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <?= $details->organization ?>
+                                </td>
+                            <tr>
+                                <td>
+                                    <?= $user->email ?>
+                                </td>
+                            <tr>
+                                <td>
+                                    <?= $details->cellphone ?>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-8">
+                    Admin information
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <hr />
+                    <h3><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Sponsorships</h3>
                     <table class="table table-striped table-bordered table-condensed table-hover">
                         <tbody>
                             <?php $total_amount = 0; ?>
@@ -135,7 +128,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3" style="text-align:center">
-                                    <?= $this->Html->link(__('Submit Request'), ['plugin' => 'Usermgmt', 'controller' => 'users', 'action' => 'thanks', $total_amount, $this->UserAuth->getUserId()], ['class' => 'btn btn-default btn-sm']) ?>
+                                    <?= $this->Html->link(__('Submit to Treasurer'), ['plugin' => 'Usermgmt', 'controller' => 'users', 'action' => 'thanks', $total_amount, $this->UserAuth->getUserId()], ['class' => 'btn btn-default btn-sm']) ?>
                                 </td>
                             </tr>
                         </tbody>
