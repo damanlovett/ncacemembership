@@ -22,6 +22,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
 <?php
+
 namespace Usermgmt\Controller;
 
 use Usermgmt\Controller\UsermgmtAppController;
@@ -188,14 +189,11 @@ class UsersController extends UsermgmtAppController
 		if ($userEntity['email']) {
 
 			$this->Flash->success(__('Email has been sent'));
-
 		} else {
 			$this->Flash->error(__('Email has not been sent'));
-
 		}
 
 		return $this->redirect($this->referer());
-
 	}
 
 
@@ -208,8 +206,8 @@ class UsersController extends UsermgmtAppController
 		$welcome = $this->UserEmailTemplates->getEmailTemplateById($type);
 
 		$header = $userEntity['first_name'];
-		 //$headers.="MIME-Version: 1.0\n";
-		 //$headers.="Content-type: text/html; charset=iso 8859-1";
+		//$headers.="MIME-Version: 1.0\n";
+		//$headers.="Content-type: text/html; charset=iso 8859-1";
 
 		$this->loadModel('Usermgmt.UserEmailSignatures');
 		$signature = $this->UserEmailSignatures->getEmailSignatureById($sign);
@@ -234,49 +232,44 @@ class UsersController extends UsermgmtAppController
 		if ($userEntity['email']) {
 
 			$this->Flash->success(__('Email has been sent'));
-
 		} else {
 			$this->Flash->error(__('Email has not been sent'));
-
 		}
 
 		return $this->redirect($this->referer());
-
 	}
 
 
 	public function thanks($total = null, $id = null)
 	{
-
-		$userEntity = $this->Users->getUserById($id);
+		$this->loadModel('Usrs');
+		$userEntity = $this->Usrs->find()->where(['Usrs.id' => $id])->first();
 
 		$header = $userEntity['first_name'];
-	//$headers.="MIME-Version: 1.0\n";
-	//$headers.="Content-type: text/html; charset=iso 8859-1";
+		//$headers.="MIME-Version: 1.0\n";
+		//$headers.="Content-type: text/html; charset=iso 8859-1";
 
 
 		$message = '';
 		$message .= "<p>" . $userEntity['first_name'] . "  " . $userEntity['last_name'];
 		$message .= " has a submitted a Sponsorship Request for $" . $total . "  Please log";
-		$message .= " into the system <a href='http://members.ncace.org'>http://members.ncace.org</a> and process the transaction.</p>";
+		$message .= " into the system and view their request information at  <a href='http://www.ncace.org/members/usrs/view/" . $userEntity['id'] . "'>http://www.ncace.org/members//usrs/view/" . $userEntity['id'] . "</a> and process the transaction.</p>";
 		$message .= "<p><hr/>";
 
 		$email = new Email('default');
 		$email
 			->template('default')
 			->emailFormat('both')
-			->from('admin@ncace.org', 'admin')
-			->to('sbrien@uncc.edu', 'sponsorship')
+			->from('admin@ncace.org', 'NCACE Admin Account')
+			->to('b_kusnia@uncg.edu', 'Sponsorship Committee')
 			->subject('Sponsorship Request')
 			->send($message);
 
 		if ($userEntity['email']) {
 
 			$this->Flash->success(__('Email has been sent'));
-
 		} else {
 			$this->Flash->error(__('Email has not been sent'));
-
 		}
 
 		//return $this->redirect($this->referer());
@@ -303,7 +296,6 @@ class UsersController extends UsermgmtAppController
 		if ($id == 1) {
 
 			$this->response->download('active_memberships.csv');
-
 		} else {
 
 			$this->response->download('inactive_memberships.csv');
@@ -384,7 +376,6 @@ class UsersController extends UsermgmtAppController
 			$this->Flash->error(__('All active members have been set to Renewal Status'));
 		}
 		return $this->redirect($this->referer());
-
 	}
 
 	/**
@@ -405,7 +396,6 @@ class UsersController extends UsermgmtAppController
 			$this->Flash->success(__('This members has been set to Renewal Status'));
 		}
 		return $this->redirect($this->referer());
-
 	}
 
 	/**
@@ -425,11 +415,9 @@ class UsersController extends UsermgmtAppController
 			$mainAnnouncement = $this->Announcements->get(1);
 			$this->set('mainAnnouncement', $mainAnnouncement);
 			$this->set('_serialize', ['mainAnnouncement']);
-
 		} else {
 			$this->redirect(['action' => 'login']);
 		}
-
 	}
 
 
@@ -486,7 +474,6 @@ class UsersController extends UsermgmtAppController
 			$this->viewBuilder()->layout('ajax');
 			$this->render('/Element/members');
 		}
-
 	}
 	/**
 	 * It displays search suggestions on all users index page
@@ -769,8 +756,6 @@ class UsersController extends UsermgmtAppController
 					'contain' => ['Users']
 				];
 				$transactions = $this->paginate($this->Transactions);
-
-
 			} else {
 				$this->Flash->error(__('Invalid user id'));
 				$this->redirect(['action' => 'index', 'page' => $page]);
@@ -1203,9 +1188,7 @@ class UsersController extends UsermgmtAppController
 	 * @return void
 	 */
 	public function accessDenied()
-	{
-
-	}
+	{ }
 	/**
 	 * It is used to login user
 	 *
@@ -1712,10 +1695,11 @@ class UsersController extends UsermgmtAppController
 				$this->loadModel('Usermgmt.UserDetails');
 
 				$genders = $this->Users->getGenders(false);
+				$regions = $this->Users->getRegions(false);
 				$otypes = $this->Users->getOtypes(false);
 				$ostatus = $this->Users->getOstatus(false);
 				$mstatus = $this->Users->getMstatus(false);
-				$this->set(compact('userGroups', 'userEntity', 'genders', 'otypes', 'ostatus', 'mstatus'));
+				$this->set(compact('userGroups', 'userEntity', 'genders', 'regions', 'otypes', 'ostatus', 'mstatus'));
 
 
 
