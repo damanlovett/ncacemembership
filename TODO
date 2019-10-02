@@ -2,3 +2,17 @@
 Todo:
   ☐ Add Region to user details for exporting
   ☐ Set up a transfer button for templates, Like the reset membership link
+
+Sponsorship:
+  ☐ Create Usrs table ( user clone )
+  ☐ Relink Users table as Usrs table
+  ☐ Find last entered id ( has to be used to link sponsors )
+  ☐ Make admin instructions
+
+Sponsorship Navigation:
+  Admin:
+    Dashboard - Usr(main page) 
+  User:
+    form part 1 usrs/add
+    form part 2 add/$id/$id2
+    confirmation page

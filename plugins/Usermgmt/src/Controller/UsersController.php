@@ -261,7 +261,7 @@ class UsersController extends UsermgmtAppController
 			->template('default')
 			->emailFormat('both')
 			->from('admin@ncace.org', 'NCACE Admin Account')
-			->to('b_kusnia@uncg.edu', 'Sponsorship Committee')
+			->to('brownjo@ecu.edu', 'Sponsorship Committee')
 			->subject('Sponsorship Request')
 			->send($message);
 

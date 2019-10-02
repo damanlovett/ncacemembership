@@ -54,6 +54,9 @@ class SponsoredItemsTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
         ]);
+        $this->belongsTo('Usrs', [
+            'foreignKey' => 'user_id'
+        ]);
         $this->hasMany('Sponsors', [
             'foreignKey' => 'sponsored_item_id'
         ]);

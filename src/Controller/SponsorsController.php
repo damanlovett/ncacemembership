@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -20,8 +21,8 @@ class SponsorsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'SponsoredItems', 'Sponsorships'],
-            'order' => ['Sponsors.user_id' => 'asc']
+            'contain' => ['Usrs', 'SponsoredItems', 'Sponsorships'],
+            'order' => ['Sponsors.usr_id' => 'asc']
         ];
         $sponsors = $this->paginate($this->Sponsors);
 
@@ -39,7 +40,7 @@ class SponsorsController extends AppController
     public function view($id = null)
     {
         $sponsor = $this->Sponsors->get($id, [
-            'contain' => ['Users', 'SponsoredItems', 'Sponsorships']
+            'contain' => ['Usrs', 'SponsoredItems', 'Sponsorships']
         ]);
 
         $this->set('sponsor', $sponsor);
@@ -67,30 +68,37 @@ class SponsorsController extends AppController
         $this->loadModel('SponsoredItems');
         $sponsorship = $this->SponsoredItems->find('all')
             ->where(['SponsoredItems.sponsorship_id' => $id])
-            ->contain(['Users', 'SponsoredLevels'])
+            ->contain(['Usrs', 'SponsoredLevels'])
             ->order(['SponsoredLevels.placement' => 'ASC'])
             ->limit(100);
 
         //$this->set('sponsorship', $sponsorship);
 
         $sponsorlist = $this->Sponsors->find('all')
-            ->where(['Sponsors.sponsorship_id' => $id, 'Sponsors.user_id' => $userId])
-            ->contain(['Users', 'SponsoredItems', 'SponsoredItems.SponsoredLevels'])
+            ->where(['Sponsors.sponsorship_id' => $id, 'Sponsors.usr_id' => $userId])
+            ->contain(['Usrs', 'SponsoredItems', 'SponsoredItems.SponsoredLevels'])
             ->limit(50);
 
         //$this->set('sponsorlist', $sponsorlist);
         $this->set(compact('sponsor', 'sponsorlist', 'sponsorship'));
         $this->set('_serialize', ['sponsor']);
-
     }
     /**
      * Add method
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add($id = null)
+    public function add($id = null, $id2 = null)
     {
-        $userId = $this->UserAuth->getUserId();
+        $this->loadModel('Usrs');
+        $usr = $this->Usrs->get($id2, [
+            'contain' => ['Sponsors']
+        ]);
+
+        $this->set('usr', $usr);
+        $this->set('_serialize', ['usr']);
+
+        $userId = $id2;
 
         $sponsor = $this->Sponsors->newEntity();
         if ($this->request->is('post')) {
@@ -106,20 +114,20 @@ class SponsorsController extends AppController
         $this->loadModel('SponsoredItems');
         $sponsorship = $this->SponsoredItems->find('all')
             ->where(['SponsoredItems.sponsorship_id' => $id])
-            ->contain(['Users', 'SponsoredLevels'])
+            ->contain(['Usrs', 'SponsoredLevels'])
             ->order(['SponsoredLevels.placement' => 'ASC'])
             ->limit(100);
 
         $this->set('sponsorship', $sponsorship);
 
         $sponsorlist = $this->Sponsors->find('all')
-            ->where(['Sponsors.sponsorship_id' => $id, 'Sponsors.user_id' => $userId])
-            ->contain(['Users', 'SponsoredItems', 'SponsoredItems.SponsoredLevels'])
+            ->where(['Sponsors.sponsorship_id' => $id, 'Sponsors.usr_id' => $userId])
+            ->contain(['Usrs', 'SponsoredItems', 'SponsoredItems.SponsoredLevels'])
             ->limit(50);
 
         $this->set('sponsorlist', $sponsorlist);
 
-        //$users = $this->Sponsors->Users->find('list', ['limit' => 200]);
+        //$usrs = $this->Sponsors->Usrs->find('list', ['limit' => 200]);
         $sponsoredItems = $this->Sponsors->SponsoredItems->find('list')
             ->where(['sponsorship_id' => $id, 'unavailable' => 0])
             ->limit(50);
@@ -127,7 +135,7 @@ class SponsorsController extends AppController
             'keyField' => 'name',
             'valueField' => 'id'
         ]);
-        $this->set(compact('sponsor', 'users', 'sponsoredItems', 'sponsorships', 'userId'));
+        $this->set(compact('sponsor', 'usrs', 'sponsoredItems', 'sponsorships', 'userId'));
         $this->set('_serialize', ['sponsor']);
     }
 
@@ -151,22 +159,22 @@ class SponsorsController extends AppController
             $this->Flash->error(__('The sponsor could not be saved. Please, try again.'));
         }
 
-        $this->loadModel('Users');
-        $user = $this->Users->findById($id2)->first();
-        $this->set('user', $user);
+        $this->loadModel('Usrs');
+        $usr = $this->usrs->findById($id2)->first();
+        $this->set('usr', $usr);
 
         $this->loadModel('UserDetails');
         $details = $this->UserDetails->findByUserId($id2)->first();
         $this->set('details', $details);
 
         $sponsorlist = $this->Sponsors->find('all')
-            ->where(['Sponsors.sponsorship_id' => $id, 'Sponsors.user_id' => $id2])
-            ->contain(['Users', 'SponsoredItems', 'SponsoredItems.SponsoredLevels'])
+            ->where(['Sponsors.sponsorship_id' => $id, 'Sponsors.usr_id' => $id2])
+            ->contain(['Usrs', 'SponsoredItems', 'SponsoredItems.SponsoredLevels'])
             ->limit(50);
 
         $this->set('sponsorlist', $sponsorlist);
 
-        //$users = $this->Sponsors->Users->find('list', ['limit' => 200]);
+        //$Usrs = $this->Sponsors->Usrs->find('list', ['limit' => 200]);
         $sponsoredItems = $this->Sponsors->SponsoredItems->find('list')
             ->where(['sponsorship_id' => $id, 'unavailable' => 0])
             ->limit(50);
@@ -174,7 +182,7 @@ class SponsorsController extends AppController
             'keyField' => 'name',
             'valueField' => 'id'
         ]);
-        $this->set(compact('sponsor', 'users', 'sponsoredItems', 'sponsorships', 'userId'));
+        $this->set(compact('sponsor', 'usrs', 'sponsoredItems', 'sponsorships', 'userId'));
         $this->set('_serialize', ['sponsor']);
     }
 
@@ -199,10 +207,10 @@ class SponsorsController extends AppController
             }
             $this->Flash->error(__('The sponsor could not be saved. Please, try again.'));
         }
-        $users = $this->Sponsors->Users->find('list', ['limit' => 200]);
+        $usrs = $this->Sponsors->Usrs->find('list', ['limit' => 200]);
         $sponsoredItems = $this->Sponsors->SponsoredItems->find('list', ['limit' => 200]);
         $sponsorships = $this->Sponsors->Sponsorships->find('list', ['limit' => 200]);
-        $this->set(compact('sponsor', 'users', 'sponsoredItems', 'sponsorships'));
+        $this->set(compact('sponsor', 'usrs', 'sponsoredItems', 'sponsorships'));
         $this->set('_serialize', ['sponsor']);
     }
     /**
@@ -229,21 +237,18 @@ class SponsorsController extends AppController
             ->template('default')
             ->emailFormat('both')
             ->from('admin@ncace.org', 'admin')
-            ->to('eddie@lovettcreations.org', 'membership')
+            ->to('brownjo@ecu.edu', 'membership')
             ->subject('Sponsorship Request')
             ->send($message);
 
         if ($userEntity['email']) {
 
             $this->Flash->success(__('Email has been sent'));
-
         } else {
             $this->Flash->error(__('Email has not been sent'));
-
         }
 
         return $this->redirect($this->referer());
-
     }
 
 

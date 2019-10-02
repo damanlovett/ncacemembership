@@ -42,8 +42,8 @@ class SponsorsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
+        $this->belongsTo('Usrs', [
+            'foreignKey' => 'usr_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('SponsoredItems', [
@@ -85,7 +85,7 @@ class SponsorsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['usr_id'], 'Usrs'));
         $rules->add($rules->existsIn(['sponsored_item_id'], 'SponsoredItems'));
         $rules->add($rules->existsIn(['sponsorships_id'], 'Sponsorships'));
 

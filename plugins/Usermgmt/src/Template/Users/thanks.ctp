@@ -31,12 +31,13 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
     <div class="panel-body">
 
 
-
-        <h1> Confirmation goes here</h1>
+        <p>Thank you for your interest in sponsorship for the 2019 NCACE Conference! Our Sponsorship Committee will
+            review and respond to your request within 48 hours. You will receive more information regarding approval and
+            next steps (including payment) at that time. Our team looks forward to partnering with you this year!</p>
         <p>If you have questions please contact:<br />
-            Sue Brien, <a href="mailto:sbrien@uncc.edu">sbrien@uncc.edu</a><br />
-            Brittany Jellison, <a href="mailto:b_kusnia@uncg.edu">b_kusnia@uncg.edu</a><br />
-            Adam Denney, <a href="mailto:denneya15@ecu.edu">denneya15@ecu.edu</a><br />
+            Lee Brown, <a href="mailto:brownjo@ecu.edu">brownjo@ecu.edu</a><br />
+            Stacey Huffman, <a href="mailto:huffmans@uncw.edu">huffmans@uncw.edu</a><br />
+            Tori Stevens, <a href="mailto:toristevens.evolyoution@gmail.com">toristevens.evolyoution@gmail.com</a><br />
         </p>
 
 

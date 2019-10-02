@@ -16,7 +16,7 @@
             <?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?>
         </li>
         <li>
-            <?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?>
+            <?= $this->Html->link(__('New Usr'), ['controller' => 'Users', 'action' => 'add']) ?>
         </li>
         <li>
             <?= $this->Html->link(__('List Sponsored Items'), ['controller' => 'SponsoredItems', 'action' => 'index']) ?>
@@ -36,10 +36,8 @@
     <div class="panel-heading">
         <span class="panel-title" style="font-size: 22px;">
             <?= __('Sponsorships') ?>
-            <div class="panel-title-right">
-                <?= $this->Html->link(__('Return Home'), ['plugin' => 'Usermgmt', 'controller' => 'users', 'action' => 'dashboard'], ['class' => 'btn btn-primary btn-sm']) ?>
+            <?= $this->element('sponsorsmenu'); ?>
 
-            </div>
         </span>
     </div>
     <div class="panel-body">
@@ -76,16 +74,16 @@
 
                 <td>
 
-                    <?php if ($previous == $sponsor->user->id) {
+                    <?php if ($previous == $sponsor->usr->id) {
                         echo '';
 
                     } else { ?>
                     <?= $this->Html->link(
-                        '<span class="fa fa-edit"></span><span class="sr-only">' . __('Process') . '</span>',
-                        ['action' => 'mview', $sponsor->sponsorship->id, $sponsor->user->id],
+                        '<span class="fa fa-edit"></span><span class="sr-only">' . __('view') . '</span>',
+                        ['controller' => 'usrs', 'action' => 'view', $sponsor->usr->id],
                         ['escape' => false, 'title' => __('View'), 'class' => 'btn btn-l']
                     ) ?>
-                    <?= $sponsor->has('user') ? $sponsor->user->last_name . ", " . $sponsor->user->first_name : '' ?>
+                    <?= $sponsor->has('usr') ? $sponsor->usr->last_name . ", " . $sponsor->usr->first_name : '' ?>
                     <?php
 
                 } ?>
@@ -129,7 +127,7 @@
                 </td>
                 </tr>
 
-                <?php $previous = $sponsor->user->id;
+                <?php $previous = $sponsor->usr->id;
                 endforeach; ?>
             </tbody>
         </table>
