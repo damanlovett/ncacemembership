@@ -22,7 +22,7 @@
                         <li><?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;Mentors", ['plugin' => false, 'controller' => 'memberships', 'action' => 'mentor_accounts', $current->title], ['escape' => false]) ?>
                         </li>
 
-                        <li><?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;All Members", ['controller' => 'memberships',    'action' => 'all_accounts'], ['escape' => false]) ?>
+                        <li><?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;All Memberships", ['controller' => 'memberships',    'action' => 'all_accounts'], ['escape' => false]) ?>
                         </li>
                         <li>
                             <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;Active Members", ['controller' => 'users', 'action' => 'members_status', '1'], ['escape' => false]) ?>
