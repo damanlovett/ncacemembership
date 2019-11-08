@@ -290,6 +290,12 @@ class UsersController extends UsermgmtAppController
 	}
 
 
+	/**
+	 * It exports actve/inactive members to excel
+	 *
+	 * @access public
+	 * @return void
+	 */
 	public function members_status($id = null)
 	{
 
@@ -306,8 +312,40 @@ class UsersController extends UsermgmtAppController
 		$datas = $this->Users->find('all')->contain('UserDetails')->where(['Users.active' => $id])->toArray();
 
 		$_serialize = 'datas';
-		$_header = ['ID', 'First', 'Last', 'Email', 'Username', 'organization', 'status'];
-		$_extract = ['id', 'first_name', 'last_name', 'email', 'username', 'user_detail.organization_type', 'user_detail.organization_status'];
+		$_header = ['First', 'Last', 'Email', 'Username', 'organization', 'region', 'status'];
+		$_extract = ['first_name', 'last_name', 'email', 'username', 'user_detail.organization_type', 'region', 'user_detail.organization_status'];
+		$this->viewBuilder()->className('CsvView.Csv');
+		$this->set(compact('datas', '_serialize', '_header', '_extract'));
+		return;
+	}
+
+	/**
+	 * It exports members to excel by region
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function members_regions($id = null)
+	{
+
+		if ($id == "Eastern") {
+
+			$this->response->download('eastern_memberships.csv');
+		} elseif ($id == "Central") {
+
+			$this->response->download('central_memberships.csv');
+		} else {
+
+			$this->response->download('western_memberships.csv');
+		}
+
+
+
+		$datas = $this->Users->find('all')->contain('UserDetails')->where(['Users.active' => 1, 'Users.region' => $id])->toArray();
+
+		$_serialize = 'datas';
+		$_header = ['First', 'Last', 'Email', 'Username', 'organization', 'region', 'status'];
+		$_extract = ['first_name', 'last_name', 'email', 'username', 'user_detail.organization_type', 'region', 'user_detail.organization_status'];
 		$this->viewBuilder()->className('CsvView.Csv');
 		$this->set(compact('datas', '_serialize', '_header', '_extract'));
 		return;
