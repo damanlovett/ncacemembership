@@ -238,6 +238,7 @@ class SponsorsController extends AppController
             ->emailFormat('both')
             ->from('admin@ncace.org', 'admin')
             ->to('brownjo@ecu.edu', 'membership')
+            ->cc('kabayley@email.unc.edu', 'Kaitlyn Bayley')
             ->subject('Sponsorship Request')
             ->send($message);
 
