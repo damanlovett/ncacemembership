@@ -10,7 +10,7 @@
         <span class="panel-title" style="font-size: 22px;">
             <?= __('All Membership Accounts') ?>
             <div class="panel-title-right">
-                <?= $this->Html->link('Pending Memberships', ['controller' => 'memberships',	'action' => 'index'], ['class' => 'btn btn-primary btn-sm']) ?>
+                <?= $this->Html->link('Pending Memberships', ['controller' => 'memberships',    'action' => 'index'], ['class' => 'btn btn-primary btn-sm']) ?>
                 <div class='btn-group'>
                     <button class='btn btn-primary btn-sm dropdown-toggle' data-toggle='dropdown'>Export Reports
                         <span class='caret'></span>
@@ -20,16 +20,16 @@
                             <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;Processed", ['plugin' => false, 'controller' => 'memberships', 'action' => 'members_accounts', '1'], ['escape' => false]) ?>
                         </li>
                         <li>
-                            <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;Unprocessed", ['controller' => 'memberships',	'action' => 'members_accounts', '0'], ['escape' => false]) ?>
+                            <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;Unprocessed", ['controller' => 'memberships',    'action' => 'members_accounts', '0'], ['escape' => false]) ?>
                         </li>
                         <li>
                             <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;Mentors", ['plugin' => false, 'controller' => 'memberships', 'action' => 'mentor_accounts', $current->title], ['escape' => false]) ?>
                         </li>
                         <li>
-                            <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;All Memberships", ['controller' => 'memberships',	'action' => 'all_accounts'], ['escape' => false]) ?>
+                            <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;All Memberships", ['controller' => 'memberships',    'action' => 'all_accounts'], ['escape' => false]) ?>
                         </li>
                         <li>
-                            <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Active Members", ['controller' => 'users', 'action' => 'members_status', '1'], ['escape' => false]) ?>
+                            <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Active Members", ['plugin' => 'Usermgmt', 'controller' => 'users', 'action' => 'members_status', '1'], ['escape' => false]) ?>
                         </li>
 
 
@@ -57,7 +57,7 @@
                 <strong>
                     <?= $current->title; ?>
                 </strong>
-                <?= $this->Html->link('Change Current Year', ['controller' => 'blurbs',	'action' => 'change', '4'], ['class' => 'btn btn-primary btn-xs']) ?>
+                <?= $this->Html->link('Change Current Year', ['controller' => 'blurbs',    'action' => 'change', '4'], ['class' => 'btn btn-primary btn-xs']) ?>
             </p>
         </div>
         <table class="table table-striped table-bordered table-condensed table-hover">
