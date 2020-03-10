@@ -993,8 +993,9 @@ class UsersTable extends UsermgmtAppTable
 	{
 		$regions = [];
 		if ($sel) {
-			$regions[''] = __('Select Regions');
+			$regions[''] = __('Select Region');
 		}
+		$regions[''] = __('Select Region');
 		$regions['Eastern'] = __('Eastern');
 		$regions['Central'] = __('Central');
 		$regions['Western'] = __('Western');
@@ -1160,7 +1161,8 @@ class UsersTable extends UsermgmtAppTable
 		$body = __('Welcome {0},<br/><br/>Thank you for your registration on {1}.<br/><br/>Thanks,<br/>{2}', [$userEntity['first_name'], SITE_URL, SITE_NAME]);
 		try {
 			$emailObj->send($body);
-		} catch (Exception $ex) { }
+		} catch (Exception $ex) {
+		}
 	}
 	/**
 	 * Used to send email verification mail to user
@@ -1186,7 +1188,8 @@ class UsersTable extends UsermgmtAppTable
 		$body = __('Hey {0}, <br/><br/>You recently entered a contact email address. To confirm your contact email, follow the link below: <br/><br/>{1}<br/><br/>If clicking on the link doesn\'t work, try copying and pasting it into your browser.<br/><br/>Thanks,<br/>{2}', [$userEntity['first_name'], $link, SITE_NAME]);
 		try {
 			$emailObj->send($body);
-		} catch (Exception $ex) { }
+		} catch (Exception $ex) {
+		}
 	}
 	/**
 	 * Used to send forgot password mail to user
@@ -1212,7 +1215,8 @@ class UsersTable extends UsermgmtAppTable
 		$body = __('Welcome {0},<br/><br/>You have requested to have your password reset on {1}. Please click the link below to reset your password now: <br/><br/>{2}<br/><br/>If clicking on the link doesn\'t work, try copying and pasting it into your browser.<br/><br/>Thanks,<br/>{3}', [$userEntity['first_name'], SITE_NAME, $link, SITE_NAME]);
 		try {
 			$emailObj->send($body);
-		} catch (Exception $ex) { }
+		} catch (Exception $ex) {
+		}
 	}
 	/**
 	 * Used to send change password mail to user
@@ -1236,6 +1240,7 @@ class UsersTable extends UsermgmtAppTable
 		$body = __('Hey {0},<br/><br/>You recently changed your password on {1}.<br/><br/>As a security precaution, this notification has been sent to your email addresse associated with your account.<br/><br/>Thanks,<br/>{2}', [$userEntity['first_name'], $datetime, SITE_NAME]);
 		try {
 			$emailObj->send($body);
-		} catch (Exception $ex) { }
+		} catch (Exception $ex) {
+		}
 	}
 }

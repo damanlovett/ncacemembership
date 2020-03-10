@@ -22,126 +22,130 @@ The above copyright notice and this permission notice shall be included in all c
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
 <div class="panel panel-success">
-	<div class="panel-heading">
-		<span class="panel-title">
-			<?= $user->full_name; ?>
-		</span>
-		<?php $page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1; ?>
-		<span class="panel-title-right">
-			<?php echo $this->Html->link(__('Back', true), ['action'=>'index', 'page'=>$page], ['class'=>'btn btn-primary']); ?>
-		</span>
-		<span class="panel-title-right">
-			<?php echo $this->Html->link(__('Edit', true), ['action'=>'editUser', $userId, 'page'=>$page], ['class'=>'btn btn-primary']); ?>
-		</span>
-	</div>
-	<div class="panel-body">
-		<div style="display:inline-block;" class="table-responsive">
-			<?php if(!empty($user)) { ?>
-				<div class="profile" style="float: left; margin-right:20px;">
-								<img alt="<?php echo h($user['first_name'].' '.$user['last_name']); ?>" src="<?php echo $this->Image->resize('library/'.IMG_DIR, $user['photo'], 200, null, true);?>" class="img-rounded">
-							</div>
-			<table class="table-condensed table-striped table-bordered table-hover">
-				<tbody>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Name');?>:</strong></td>
-						<td><?php echo h($user['last_name'].", ".$user['first_name']);?></td>
-					</tr>
-					<tr>					
-						<td style="text-align:right"><strong><?php echo __('Group(s)');?>:</strong></td>
-						<td><?php echo h($user['group_name']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Username');?>:</strong></td>
-						<td><?php echo h($user['username']);?></td>
-					</tr>
-					<tr>
-					
-						<td style="text-align:right"><strong><?php echo __('Email');?>:</strong></td>
-						<td><?php echo h($user['email']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Job Title');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['job_title']);?></td>
-					</tr>
-					<tr>
-					
-						<td style="text-align:right"><strong><?php echo __('Organization');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['organization']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Department/Division');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['department']);?></td>
-					</tr>
-					<tr>
-					
-						<td style="text-align:right"><strong><?php echo __('Organization Type');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['organization_type']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Organization Status');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['organization_status']);?></td>
-					</tr>
-					<tr>
-					
-						<td style="text-align:right"><strong><?php echo __('Organization Website');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['organization_web']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Membership Status');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['member_status']);?></td>
-					</tr>
-					<tr>
-					
-						<td style="text-align:right"><strong><?php echo __('Gender');?>:</strong></td>
-						<td><?php echo h(ucwords($user['gender']));?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Birthday');?>:</strong></td>
-						<td><?php if(!empty($user['bday'])) { echo $user['bday']->format('d-M-Y'); } ?></td>
-					</tr>
-					<tr>
-					
-						<td style="text-align:right"><strong><?php echo __('Cellphone');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['cellphone']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Address'); ?>:</strong></td>
-						<td><?php echo h($user['user_detail']['location']);?></td>
-					</tr>
-					<tr>
-					
-						<td style="text-align:right"><strong><?php echo __('Status');?>:</strong></td>
-						<td><?php echo ($user['active']) ? __('Active') : __('Inactive');?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Email Verified');?></strong></td>
-						<td><?php echo ($user['email_verified']) ? __('Yes') : __('No');?></td>
-					</tr>
-					<tr>
-					
-						<td style="text-align:right"><strong><?php echo __('Ip Address');?>:</strong></td>
-						<td><?php echo $user['ip_address'];?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Joined');?>:</strong></td>
-						<td><?php echo $user['created']->format('d-M-Y');?></td>
-					</tr>
-					<tr>
-					
-						<td style="text-align:right"><strong><?php echo __('Created By');?>:</strong></td>
-						<td><?php echo ($user['created_by']) ? $user['created_by'] : '';?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Last Login');?>:</strong></td>
-						<td><?php echo ($user['last_login']) ? $user['last_login']->format('d-M-Y') : '';?></td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
-				</tbody>
-			</table>
-			<?php } ?>
-		</div>
-	</div>
+    <div class="panel-heading">
+        <span class="panel-title">
+            <?= $userEntity->full_name; ?>
+        </span>
+        <?php $page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1; ?>
+        <span class="panel-title-right">
+            <?php echo $this->Html->link(__('Back', true), ['action' => 'index', 'page' => $page], ['class' => 'btn btn-primary']); ?>
+        </span>
+        <span class="panel-title-right">
+            <?php echo $this->Html->link(__('Edit', true), ['action' => 'editUser', $userId, 'page' => $page], ['class' => 'btn btn-primary']); ?>
+        </span>
+    </div>
+    <div class="panel-body">
+        <div style="display:inline-block;" class="table-responsive">
+            <?php if (!empty($user)) { ?>
+            <div class="profile" style="float: left; margin-right:20px;">
+                <img alt="<?php echo h($userEntity['first_name'] . ' ' . $user['last_name']); ?>"
+                    src="<?php echo $this->Image->resize('library/' . IMG_DIR, $user['photo'], 200, null, true); ?>"
+                    class="img-rounded">
+            </div>
+            <table class="table-condensed table-striped table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Name'); ?>:</strong></td>
+                        <td><?php echo h($user['last_name'] . ", " . $user['first_name']); ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Group(s)'); ?>:</strong></td>
+                        <td><?php echo h($user['group_name']); ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Username'); ?>:</strong></td>
+                        <td><?php echo h($user['username']); ?></td>
+                    </tr>
+                    <tr>
+
+                        <td style="text-align:right"><strong><?php echo __('Email'); ?>:</strong></td>
+                        <td><?php echo h($user['email']); ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Job Title'); ?>:</strong></td>
+                        <td><?php echo h($user['user_detail']['job_title']); ?></td>
+                    </tr>
+                    <tr>
+
+                        <td style="text-align:right"><strong><?php echo __('Organization'); ?>:</strong></td>
+                        <td><?php echo h($user['user_detail']['organization']); ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Department/Division'); ?>:</strong></td>
+                        <td><?php echo h($user['user_detail']['department']); ?></td>
+                    </tr>
+                    <tr>
+
+                        <td style="text-align:right"><strong><?php echo __('Organization Type'); ?>:</strong></td>
+                        <td><?php echo h($user['user_detail']['organization_type']); ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Organization Status'); ?>:</strong></td>
+                        <td><?php echo h($user['user_detail']['organization_status']); ?></td>
+                    </tr>
+                    <tr>
+
+                        <td style="text-align:right"><strong><?php echo __('Organization Website'); ?>:</strong></td>
+                        <td><?php echo h($user['user_detail']['organization_web']); ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Membership Status'); ?>:</strong></td>
+                        <td><?php echo h($user['user_detail']['member_status']); ?></td>
+                    </tr>
+                    <tr>
+
+                        <td style="text-align:right"><strong><?php echo __('Gender'); ?>:</strong></td>
+                        <td><?php echo h(ucwords($user['gender'])); ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Birthday'); ?>:</strong></td>
+                        <td><?php if (!empty($user['bday'])) {
+										echo $user['bday']->format('d-M-Y');
+									} ?></td>
+                    </tr>
+                    <tr>
+
+                        <td style="text-align:right"><strong><?php echo __('Cellphone'); ?>:</strong></td>
+                        <td><?php echo h($user['user_detail']['cellphone']); ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Address'); ?>:</strong></td>
+                        <td><?php echo h($user['user_detail']['location']); ?></td>
+                    </tr>
+                    <tr>
+
+                        <td style="text-align:right"><strong><?php echo __('Status'); ?>:</strong></td>
+                        <td><?php echo ($user['active']) ? __('Active') : __('Inactive'); ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Email Verified'); ?></strong></td>
+                        <td><?php echo ($user['email_verified']) ? __('Yes') : __('No'); ?></td>
+                    </tr>
+                    <tr>
+
+                        <td style="text-align:right"><strong><?php echo __('Ip Address'); ?>:</strong></td>
+                        <td><?php echo $user['ip_address']; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Joined'); ?>:</strong></td>
+                        <td><?php echo $user['created']->format('d-M-Y'); ?></td>
+                    </tr>
+                    <tr>
+
+                        <td style="text-align:right"><strong><?php echo __('Created By'); ?>:</strong></td>
+                        <td><?php echo ($user['created_by']) ? $user['created_by'] : ''; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"><strong><?php echo __('Last Login'); ?>:</strong></td>
+                        <td><?php echo ($user['last_login']) ? $user['last_login']->format('d-M-Y') : ''; ?></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            <?php } ?>
+        </div>
+    </div>
 </div>

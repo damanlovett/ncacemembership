@@ -732,11 +732,11 @@ class UsersController extends UsermgmtAppController
 	{
 		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
 		if ($userId) {
-			$user = $this->Users->getUserById($userId);
-			if (!empty($user)) {
+			$userEntity = $this->Users->getUserById($userId);
+			if (!empty($userEntity)) {
 				$this->loadModel('Usermgmt.UserGroups');
-				$user['group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
-				$user['created_by'] = $this->Users->getNameById($user['created_by']);
+				$userEntity['group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
+				$userEntity['created_by'] = $this->Users->getNameById($user['created_by']);
 			} else {
 				$this->Flash->error(__('Invalid user id'));
 				$this->redirect(['action' => 'index', 'page' => $page]);
@@ -745,7 +745,7 @@ class UsersController extends UsermgmtAppController
 			$this->Flash->error(__('Missing user id'));
 			$this->redirect(['action' => 'index', 'page' => $page]);
 		}
-		$this->set(compact('user', 'userId'));
+		$this->set(compact('userEntity', 'userId'));
 	}
 	/**
 	 * It displays members's full details
